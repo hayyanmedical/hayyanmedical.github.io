@@ -1,26 +1,100 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="fa">
+<html lang="zxx" dir="auto">
 <head>
     <meta charset="UTF-8">
-    <title>سایت در حال بازطراحی</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hayan Medical - Under Construction</title>
     <style>
-        body { font-family: Tahoma; text-align: center; padding: 50px; }
-        img { max-width: 100%; height: auto; }
-        a { 
-            display: inline-block; 
-            background: #25D366; 
-            color: white; 
-            padding: 10px 20px; 
-            text-decoration: none; 
-            border-radius: 5px; 
-            margin-top: 20px;
+        /* فونت‌های استاندارد */
+        body {
+            font-family: 
+                "Vazirmatn", "Droid Arabic Naskh", 
+                "Segoe UI", "Noto Sans Arabic",
+                -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.8;
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
         }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+        
+        .construction-image {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+            margin: 20px auto;
+        }
+        
+        .notice-box {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+        }
+        
+        [dir="rtl"] { direction: rtl; text-align: right; }
     </style>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts.css" rel="stylesheet">
 </head>
 <body>
-    <img src="under-construction.png" alt="سایت در حال به‌روزرسانی">
-    <h1>به زودی با سایت جدید بازمی‌گردیم!</h1>
-    <p>برای ارتباط از طریق واتساپ کلیک کنید:</p>
-    <a href="https://wa.me/989123456789">پیام در واتساپ</a>
+    <div class="container">
+        <img src="under-construction.jpg" alt="Under Construction" class="construction-image">
+        
+        <div dir="rtl" lang="fa">
+            <h1>وبسایت در حال بازسازی</h1>
+            <p>سایت جدید هایان مدیکال در دست ساخت است</p>
+        </div>
+        
+        <div dir="ltr" lang="en">
+            <h1>Website Under Renovation</h1>
+            <p>Hayan Medical new website is coming soon</p>
+        </div>
+        
+        <!-- جعبه هشدار مهم -->
+        <div class="notice-box" dir="rtl" lang="fa">
+            <strong>توجه:</strong> این صفحه موقت است و سایت اصلی در حال به‌روزرسانی می‌باشد.
+            <br>
+            فقط در موارد ضروری از دکمه زیر برای ارتباط استفاده کنید.
+        </div>
+        
+        <!-- دکمه واتساپ با توضیح اضافه -->
+        <div style="margin-top: 30px;">
+            <p dir="rtl" lang="fa">ارتباط اضطراری:</p>
+            <a href="https://wa.me/989123456789" class="whatsapp-btn">
+                <span dir="rtl" lang="fa">واتساپ</span>
+                <span dir="ltr" lang="en">WhatsApp</span>
+            </a>
+            <p style="font-size: 0.9em; color: #666; margin-top: 10px;">
+                پاسخگویی: ۹ صبح تا ۵ بعدازظهر
+            </p>
+        </div>
+    </div>
 </body>
 </html>
