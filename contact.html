@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا | حيان</title>
+    <style>
+        /* استایل‌های پایه */
+        body {
+            font-family: 
+                "Droid Arabic Naskh", "Noto Sans Arabic", 
+                "Segoe UI", "Vazirmatn",
+                -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.8;
+            background-color: #f5f7fa;
+            color: #333;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        /* کارت‌های ارتباطی */
+        .channel-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .channel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-color: #3498db;
+        }
+        
+        .channel-icon {
+            width: 60px;
+            height: 60px;
+            margin-left: 20px;
+            object-fit: contain;
+        }
+        
+        .channel-content {
+            flex: 1;
+        }
+        
+        .channel-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+        
+        .channel-desc {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        /* هدر صفحه */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            border-radius: 12px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.2rem;
+            margin: 0;
+            padding: 10px 0;
+            font-weight: 700;
+        }
+        
+        /* فوتو */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        /* رسپانسیو */
+        @media (max-width: 600px) {
+            .channel-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .channel-icon {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- هدر صفحه -->
+        <div class="page-header">
+            <h1>اتصل بنا</h1>
+            <p>حيان</p>
+        </div>
+        
+        <!-- کارت‌های ارتباطی -->
+        <div class="channel-cards">
+            <!-- موقع الكتروني -->
+            <a href="https://www.hayyan.org" class="channel-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="موقع الكتروني" class="channel-icon">
+                <div class="channel-content">
+                    <h3 class="channel-title">الموقع الإلكتروني</h3>
+                    <p class="channel-desc">لرؤية خدماتنا ومعلوماتنا الكاملة يرجى زيارة موقعنا</p>
+                </div>
+            </a>
+            
+            <!-- واتساب -->
+            <a href="https://wa.me/989028940862" class="channel-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" alt="واتساب" class="channel-icon">
+                <div class="channel-content">
+                    <h3 class="channel-title">واتساب</h3>
+                    <p class="channel-desc">للتواصل السريع والحصول على إجابات لاستفساراتك</p>
+                </div>
+            </a>
+            
+            <!-- انستغرام -->
+            <a href="https://instagram.com/hayyan_arabic" class="channel-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="انستغرام" class="channel-icon">
+                <div class="channel-content">
+                    <h3 class="channel-title">انستغرام</h3>
+                    <p class="channel-desc">تابعنا على انستغرام لمعرفة آخر الأخبار</p>
+                </div>
+            </a>
+            
+            <!-- بريد الكتروني -->
+            <a href="mailto:Hayyan.ht@gmail.com" class="channel-card">
+                <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="بريد الكتروني" class="channel-icon">
+                <div class="channel-content">
+                    <h3 class="channel-title">البريد الإلكتروني</h3>
+                    <p class="channel-desc">لإرسال المقترحات والملاحظات يرجى التواصل معنا</p>
+                </div>
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>© جميع الحقوق محفوظة لـ حيان</p>
+        </div>
+    </div>
+</body>
+</html>
