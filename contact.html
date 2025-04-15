@@ -1,164 +1,212 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اتصل بنا | حيان</title>
+    <meta name="description" content="Contact H A Y Y A N for inquiries about medical tourism, treatments, and cultural experiences in Iran.">
+    <meta name="keywords" content="contact H A Y Y A N, medical tourism Iran, health tourism inquiries">
+    <meta name="author" content="HAYYAN">
+    <title>Contact Us - H A Y Y A N</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* استایل‌های پایه */
-        body {
-            font-family: 
-                "Droid Arabic Naskh", "Noto Sans Arabic", 
-                "Segoe UI", "Vazirmatn",
-                -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.8;
-            background-color: #f5f7fa;
-            color: #333;
-            padding: 0;
-            margin: 0;
+        .hero-section { 
+            background-size: cover; 
+            background-position: center; 
+            height: 400px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            position: relative;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+        }
+        .hero-section h1 { 
+            font-size: 3rem; 
+            color: white; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 1;
+        }
+        .contact-info-card { 
+            transition: all 0.3s; 
+            border: 1px solid #e2e8f0;
+        }
+        .contact-info-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+        .social-icon { 
+            transition: transform 0.3s; 
+        }
+        .social-icon:hover { 
+            transform: scale(1.2); 
         }
         
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px;
-        }
-        
-        /* کارت‌های ارتباطی */
-        .channel-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            border: 1px solid #e0e0e0;
-        }
-        
-        .channel-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-            border-color: #3498db;
-        }
-        
-        .channel-icon {
-            width: 60px;
-            height: 60px;
-            margin-left: 20px;
-            object-fit: contain;
-        }
-        
-        .channel-content {
-            flex: 1;
-        }
-        
-        .channel-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-            font-weight: 700;
-        }
-        
-        .channel-desc {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-        
-        /* هدر صفحه */
-        .page-header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
-            background: linear-gradient(135deg, #3498db, #2c3e50);
-            color: white;
-            border-radius: 12px;
-        }
-        
-        .page-header h1 {
-            font-size: 2.2rem;
-            margin: 0;
-            padding: 10px 0;
-            font-weight: 700;
-        }
-        
-        /* فوتو */
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-        
-        /* رسپانسیو */
-        @media (max-width: 600px) {
-            .channel-card {
-                flex-direction: column;
-                text-align: center;
-            }
-            .channel-icon {
-                margin-left: 0;
-                margin-bottom: 15px;
-            }
-            .page-header h1 {
-                font-size: 1.8rem;
-            }
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 2rem; }
+            header nav ul { flex-direction: column; gap: 0.5rem; }
+            .contact-info-card { flex-direction: column; text-align: center; }
+            .contact-info-card img { margin-right: 0; margin-bottom: 1rem; }
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <!-- هدر صفحه -->
-        <div class="page-header">
-            <h1>اتصل بنا</h1>
-            <p>حيان</p>
+<body class="bg-gray-100 font-sans">
+    <!-- دکمه های واتساپ -->
+    <a href="https://wa.me/+989028940862" target="_blank" class="whatsapp-btn" aria-label="Contact us on WhatsApp" style="position: fixed; bottom: 80px; right: 20px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; padding: 12px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s, box-shadow 0.3s;">
+        <i class="fab fa-whatsapp" style="font-size: 24px;"></i>
+    </a>
+    <a href="https://wa.me/+989028940862" target="_blank" class="consultation-btn" aria-label="Free Consultation" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; padding: 10px 20px; border-radius: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s, box-shadow 0.3s; display: flex; align-items: center; font-size: 14px;">
+        <i class="fas fa-comment-medical" style="margin-right: 8px;"></i> Free Consultation
+    </a>
+
+    <!-- هدر اصلاح شده -->
+    <header class="bg-white shadow sticky top-0 z-50">
+        <nav class="container mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 px-6">
+            <div class="mb-2 sm:mb-0">
+                <a href="/" class="text-2xl font-bold text-teal-600">H A Y Y A N</a>
+            </div>
+            <ul class="flex flex-col sm:flex-row sm:space-x-6 sm:items-center w-full sm:w-auto gap-2">
+                <li><a href="/costs" class="text-gray-700 hover:text-teal-600">Costs</a></li>
+                <li><a href="/articles" class="text-gray-700 hover:text-teal-600">Articles</a></li>
+                <li><a href="/popular-treatments" class="text-gray-700 hover:text-teal-600">Popular Treatments</a></li>
+                <li><a href="/home" class="text-gray-700 hover:text-teal-600">Home</a></li>
+                <li>
+                    <div class="flex items-center">
+                        <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                        <select class="text-gray-700 hover:text-teal-600 bg-transparent border-none">
+                            <option value="en">English</option>
+                            <option value="ar">العربية</option>
+                            <option value="ru">Русский</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="background-image: url('https://images.pexels.com/photos/305568/pexels-photo-305568.jpeg?auto=compress&cs=tinysrgb&w=1920');">
+        <h1>Contact Us</h1>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Get in Touch</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Social Media -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-8">Connect With Us</h3>
+                    <div class="grid grid-cols-1 gap-6">
+                        <div class="contact-info-card bg-gray-50 p-6 rounded-lg flex items-center">
+                            <i class="fab fa-instagram text-3xl text-pink-600 mr-4 social-icon"></i>
+                            <div>
+                                <h4 class="text-lg font-semibold">Instagram</h4>
+                                <p class="text-gray-700"><a href="https://instagram.com/hayyanmedical" target="_blank" class="hover:text-teal-600">@hayyan_eng</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-info-card bg-gray-50 p-6 rounded-lg flex items-center">
+                            <i class="fab fa-whatsapp text-3xl text-green-500 mr-4 social-icon"></i>
+                            <div>
+                                <h4 class="text-lg font-semibold">WhatsApp</h4>
+                                <p class="text-gray-700"><a href="https://wa.me/+989028940862" target="_blank" class="hover:text-teal-600">+98 902 894 0862</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-info-card bg-gray-50 p-6 rounded-lg flex items-center">
+                            <i class="fab fa-telegram text-3xl text-blue-500 mr-4 social-icon"></i>
+                            <div>
+                                <h4 class="text-lg font-semibold">Telegram</h4>
+                                <p class="text-gray-700"><a href="https://t.me/hayyanmedical" target="_blank" class="hover:text-teal-600">@hayyan_eng</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contact Details -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-8">Contact Information</h3>
+                    <div class="grid grid-cols-1 gap-6">
+                        <div class="contact-info-card bg-gray-50 p-6 rounded-lg flex items-center">
+                            <i class="fas fa-envelope text-3xl text-teal-600 mr-4"></i>
+                            <div>
+                                <h4 class="text-lg font-semibold">Email</h4>
+                                <p class="text-gray-700"><a href="mailto:hayyan.ht@gmail.com" class="hover:text-teal-600">hayyan.ht@gmail.com</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-info-card bg-gray-50 p-6 rounded-lg flex items-center">
+                            <i class="fas fa-phone text-3xl text-teal-600 mr-4"></i>
+                            <div>
+                                <h4 class="text-lg font-semibold">Phone</h4>
+                                <p class="text-gray-700"><a href="tel:+989028940862" class="hover:text-teal-600">+98 902 894 0862</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-info-card bg-gray-50 p-6 rounded-lg flex items-center">
+                            <i class="fas fa-map-marker-alt text-3xl text-teal-600 mr-4"></i>
+                            <div>
+                                <h4 class="text-lg font-semibold">Address</h4>
+                                <p class="text-gray-700">Mashhad, Iran</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- QR Code -->
+            <div class="text-center mt-12">
+                <h3 class="text-2xl font-semibold mb-4">Scan to Connect</h3>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://hayyan.com/contact" alt="QR Code" class="mx-auto w-48 h-48 rounded-lg shadow">
+                <p class="text-gray-700 mt-4">Scan the QR code to visit our website or contact us directly.</p>
+            </div>
         </div>
-        
-        <!-- کارت‌های ارتباطی -->
-        <div class="channel-cards">
-            <!-- موقع الكتروني -->
-            <a href="https://www.hayyan.org" class="channel-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="موقع الكتروني" class="channel-icon">
-                <div class="channel-content">
-                    <h3 class="channel-title">الموقع الإلكتروني</h3>
-                    <p class="channel-desc">لرؤية خدماتنا ومعلوماتنا الكاملة يرجى زيارة موقعنا</p>
-                </div>
-            </a>
-            
-            <!-- واتساب -->
-            <a href="https://wa.me/989028940862" class="channel-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" alt="واتساب" class="channel-icon">
-                <div class="channel-content">
-                    <h3 class="channel-title">واتساب</h3>
-                    <p class="channel-desc">للتواصل السريع والحصول على إجابات لاستفساراتك</p>
-                </div>
-            </a>
-            
-            <!-- انستغرام -->
-            <a href="https://instagram.com/hayyan_arabic" class="channel-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="انستغرام" class="channel-icon">
-                <div class="channel-content">
-                    <h3 class="channel-title">انستغرام</h3>
-                    <p class="channel-desc">تابعنا على انستغرام لمعرفة آخر الأخبار</p>
-                </div>
-            </a>
-            
-            <!-- بريد الكتروني -->
-            <a href="mailto:Hayyan.ht@gmail.com" class="channel-card">
-                <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="بريد الكتروني" class="channel-icon">
-                <div class="channel-content">
-                    <h3 class="channel-title">البريد الإلكتروني</h3>
-                    <p class="channel-desc">لإرسال المقترحات والملاحظات يرجى التواصل معنا</p>
-                </div>
-            </a>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Find Us</h2>
+            <div class="w-full h-96 rounded-lg overflow-hidden shadow-lg">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.795068446084!2d51.42067031520991!3d35.68919798019276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQxJzIwLjciTiA1McKwMjUnMTQuNiJF!5e0!3m2!1sen!2sus!4v1634567890123" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
         </div>
-        
-        <div class="footer">
-            <p>© جميع الحقوق محفوظة لـ حيان</p>
+    </section>
+
+    <!-- فوتر اصلاح شده -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">H A Y Y A N</h3>
+                    <p>Medical tourism in Iran with expert care and cultural experiences.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul>
+                        <li class="mb-2"><a href="/about" class="hover:text-teal-400 transition duration-300">About Us</a></li>
+                        <li class="mb-2"><a href="/services" class="hover:text-teal-400 transition duration-300">Services</a></li>
+                        <li class="mb-2"><a href="/contact" class="hover:text-teal-400 transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <p class="mb-2">Email: <a href="mailto:hayyan.ht@gmail.com" class="hover:text-teal-400 transition duration-300">hayyan.ht@gmail.com</a></p>
+                    <p class="mb-2">Phone: <a href="tel:+989028940862" class="hover:text-teal-400 transition duration-300">+989028940862</a></p>
+                    <p>Address: Mashhad, Iran</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center pt-8 border-t border-gray-700">
+                <p>© 2025 H A Y Y A N. All rights reserved.</p>
+                <p class="mt-2"><a href="/privacy" class="hover:text-teal-400 transition duration-300">Privacy Policy</a> | <a href="/terms" class="hover:text-teal-400 transition duration-300">Terms of Use</a></p>
+            </div>
         </div>
-    </div>
+    </footer>
 </body>
 </html>
