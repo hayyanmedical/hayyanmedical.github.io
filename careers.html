@@ -1,0 +1,336 @@
+﻿<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row =>
+                    row.some(cell => cell !== '' && cell !== null && cell !== undefined)
+                );
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join Hayyan’s innovative team to revolutionize medical tourism through marketing and technology. Explore creative career opportunities.">
+    <meta name="keywords" content="Hayyan, careers, medical tourism jobs, chief marketing officer, chief technology officer, innovative hiring">
+    <meta name="author" content="Hayyan">
+    <title>Careers - Hayyan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .header-bg {
+            background-size: cover;
+            background-position: center;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Header Styles */
+        header {
+            transition: all 0.3s ease;
+        }
+        .header-scrolled {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        /* Mobile Menu */
+        .mobile-menu-button {
+            display: none;
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+        /* Hover Animation for Job Cards */
+        .job-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .job-card:hover::before {
+            left: 100%;
+        }
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 2rem; }
+            .header-mobile {
+                padding: 0.5rem 1rem;
+            }
+            .mobile-menu-button {
+                display: block;
+            }
+            nav ul {
+                display: none;
+            }
+            .mobile-menu nav ul {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- WhatsApp Buttons -->
+    <a href="https://wa.me/+989028940862" target="_blank" class="whatsapp-btn" aria-label="Contact us on WhatsApp" style="position: fixed; bottom: 80px; right: 20px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; padding: 12px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s, box-shadow 0.3s;">
+        <i class="fab fa-whatsapp" style="font-size: 24px;"></i>
+    </a>
+    <a href="https://wa.me/+989028940862" target="_blank" class="consultation-btn" aria-label="Free Consultation" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; padding: 10px 20px; border-radius: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s, box-shadow 0.3s; display: flex; align-items: center; font-size: 14px;">
+        <i class="fas fa-comment-medical" style="margin-right: 8px;"></i> Free Consultation
+    </a>
+
+    <!-- Improved Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50 header-mobile">
+        <div class="container mx-auto flex justify-between items-center py-3 px-6">
+            <a href="/" class="text-2xl font-bold text-teal-600">H A Y Y A N</a>
+            <!-- Desktop Menu -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6 items-center">
+                    <li><a href="/costs" class="text-gray-700 hover:text-teal-600 transition">Costs</a></li>
+                    <li><a href="/articles" class="text-gray-700 hover:text-teal-600 transition">Articles</a></li>
+                    <li><a href="/popular-treatments" class="text-gray-700 hover:text-teal-600 transition">Popular Treatments</a></li>
+                    <li><a href="/home" class="text-gray-700 hover:text-teal-600 transition">Home</a></li>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                            <select class="text-gray-700 hover:text-teal-600 bg-transparent border-none">
+                                <option value="en">English</option>
+                                <option value="ar">العربية</option>
+                                <option value="ru">Русский</option>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden mobile-menu-button text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu bg-white md:hidden">
+            <div class="container mx-auto px-6">
+                <nav>
+                    <ul class="flex flex-col space-y-3 py-3">
+                        <li><a href="/costs" class="text-gray-700 hover:text-teal-600 block py-2 transition">Costs</a></li>
+                        <li><a href="/articles" class="text-gray-700 hover:text-teal-600 block py-2 transition">Articles</a></li>
+                        <li><a href="/popular-treatments" class="text-gray-700 hover:text-teal-600 block py-2 transition">Popular Treatments</a></li>
+                        <li><a href="/home" class="text-gray-700 hover:text-teal-600 block py-2 transition">Home</a></li>
+                        <li class="pt-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                                <select class="text-gray-700 hover:text-teal-600 bg-transparent border-none w-full py-2">
+                                    <option value="en">English</option>
+                                    <option value="ar">العربية</option>
+                                    <option value="ru">Русский</option>
+                                </select>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Header Section -->
+    <section class="header-bg py-24 relative" style="background-image: url('images/careers/banner.jpg?auto=compress&cs=tinysrgb&w=1920');">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 fade-in">Create the Future with Hayyan</h1>
+            <p class="text-xl text-white max-w-2xl mx-auto mb-6 fade-in">Join our vibrant team to innovate medical tourism, blending world-class healthcare with cultural journeys.</p>
+            <a href="#jobs" class="inline-block bg-teal-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-teal-700 transition duration-300 fade-in">Explore Opportunities</a>
+        </div>
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 fade-in">Innovate with Us</h2>
+            <p class="text-gray-700 text-lg max-w-3xl mx-auto fade-in">At Hayyan, we’re not just a startup—we’re a movement to redefine medical tourism. As a pioneer in Iran’s healthcare landscape, we combine cutting-edge technology and creative marketing to connect global patients with top-tier medical care and unforgettable cultural experiences. Join us to push boundaries and make a global impact.</p>
+        </div>
+    </section>
+
+    <!-- Job Openings -->
+    <section id="jobs" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center fade-in">Your Next Adventure Awaits</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Chief Marketing Officer -->
+                <div class="job-card card bg-white p-6 rounded-lg shadow-lg fade-in">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-bullhorn text-teal-600 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold text-teal-600">Chief Marketing Officer</h3>
+                    </div>
+                    <p class="text-gray-700 mb-4">Craft bold strategies to attract global patients through innovative marketing and partnerships.</p>
+                    <ul class="text-gray-600 list-disc list-inside mb-6">
+                        <li>Design global marketing campaigns and analyze trends.</li>
+                        <li>Lead digital advertising, SEO, and content creation.</li>
+                        <li>Partner with influencers, doctors, and travel agencies.</li>
+                        <li>Optimize CRM and lead conversion processes.</li>
+                        <li>Track and enhance campaign performance.</li>
+                    </ul>
+                    <a href="/contact" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700 transition duration-300">Apply Now</a>
+                </div>
+                <!-- Chief Technology Officer -->
+                <div class="job-card card bg-white p-6 rounded-lg shadow-lg fade-in">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-code text-teal-600 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold text-teal-600">Chief Technology Officer</h3>
+                    </div>
+                    <p class="text-gray-700 mb-4">Build a state-of-the-art platform to deliver seamless, secure experiences for patients.</p>
+                    <ul class="text-gray-600 list-disc list-inside mb-6">
+                        <li>Create a dynamic website and booking system.</li>
+                        <li>Ensure secure payments and data compliance.</li>
+                        <li>Enhance technical SEO and site performance.</li>
+                        <li>Integrate AI recommendations and APIs.</li>
+                        <li>Support marketing with advanced tracking tools.</li>
+                    </ul>
+                    <a href="/contact" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700 transition duration-300">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center fade-in">Our Creative Culture</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card bg-teal-50 p-6 rounded-lg shadow-lg text-center fade-in">
+                    <i class="fas fa-lightbulb text-teal-600 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Innovation First</h3>
+                    <p class="text-gray-600">We thrive on bold ideas, pushing the boundaries of healthcare and tourism.</p>
+                </div>
+                <div class="card bg-teal-50 p-6 rounded-lg shadow-lg text-center fade-in">
+                    <i class="fas fa-users text-teal-600 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Collaborative Spirit</h3>
+                    <p class="text-gray-600">Work with a passionate team dedicated to shared goals and mutual growth.</p>
+                </div>
+                <div class="card bg-teal-50 p-6 rounded-lg shadow-lg text-center fade-in">
+                    <i class="fas fa-globe text-teal-600 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Global Impact</h3>
+                    <p class="text-gray-600">Shape a platform that transforms lives worldwide through health and culture.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-teal-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6 fade-in">Ready to Innovate?</h2>
+            <p class="text-lg mb-8 fade-in">Join Hayyan to create something extraordinary in medical tourism.</p>
+            <a href="/contact" class="inline-block bg-white text-teal-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 fade-in">Start Your Journey</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">H A Y Y A N</h3>
+                    <p>Medical tourism in Iran with expert care and cultural experiences.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul>
+                        <li class="mb-2"><a href="/about" class="hover:text-teal-400 transition duration-300">About Us</a></li>
+                        <li class="mb-2"><a href="/services" class="hover:text-teal-400 transition duration-300">Services</a></li>
+                        <li class="mb-2"><a href="/contact" class="hover:text-teal-400 transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <p class="mb-2">Email: <a href="mailto:hayyan.ht@gmail.com" class="hover:text-teal-400 transition duration-300">hayyan.ht@gmail.com</a></p>
+                    <p class="mb-2">Phone: <a href="tel:+989028940862" class="hover:text-teal-400 transition duration-300">+989028940862</a></p>
+                    <p>Address: Mashhad, Iran</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center pt-8 border-t border-gray-700">
+                <p>© 2025 H A Y Y A N. All rights reserved.</p>
+                <p class="mt-2"><a href="/privacy" class="hover:text-teal-400 transition duration-300">Privacy Policy</a> | <a href="/terms" class="hover:text-teal-400 transition duration-300">Terms of Use</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Header Scroll Effect
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Fade-in Animation on Scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        fadeElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
