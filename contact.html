@@ -52,17 +52,60 @@
             transform: scale(1.2); 
         }
         
+        /* Header Styles */
+        header {
+            transition: all 0.3s ease;
+        }
+        .header-scrolled {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-button {
+            display: none;
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+        
         /* Responsive Styles */
         @media (max-width: 768px) {
             .hero-section h1 { font-size: 2rem; }
-            header nav ul { flex-direction: column; gap: 0.5rem; }
-            .contact-info-card { flex-direction: column; text-align: center; }
-            .contact-info-card img { margin-right: 0; margin-bottom: 1rem; }
+            
+            /* Header Mobile Styles */
+            .header-mobile {
+                padding: 0.5rem 1rem;
+            }
+            .mobile-menu-button {
+                display: block;
+            }
+            nav ul {
+                display: none;
+            }
+            .mobile-menu nav ul {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem 0;
+            }
+            .contact-info-card { 
+                flex-direction: column; 
+                text-align: center; 
+            }
+            .contact-info-card img { 
+                margin-right: 0; 
+                margin-bottom: 1rem; 
+            }
         }
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
-    <!-- دکمه های واتساپ -->
+    <!-- WhatsApp Buttons -->
     <a href="https://wa.me/+989028940862" target="_blank" class="whatsapp-btn" aria-label="Contact us on WhatsApp" style="position: fixed; bottom: 80px; right: 20px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; padding: 12px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s, box-shadow 0.3s;">
         <i class="fab fa-whatsapp" style="font-size: 24px;"></i>
     </a>
@@ -70,29 +113,60 @@
         <i class="fas fa-comment-medical" style="margin-right: 8px;"></i> Free Consultation
     </a>
 
-    <!-- هدر اصلاح شده -->
-    <header class="bg-white shadow sticky top-0 z-50">
-        <nav class="container mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 px-6">
-            <div class="mb-2 sm:mb-0">
-                <a href="/" class="text-2xl font-bold text-teal-600">H A Y Y A N</a>
+    <!-- Improved Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50 header-mobile">
+        <div class="container mx-auto flex justify-between items-center py-3 px-6">
+            <a href="/" class="text-2xl font-bold text-teal-600">H A Y Y A N</a>
+            
+            <!-- Desktop Menu -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6 items-center">
+                    <li><a href="/costs" class="text-gray-700 hover:text-teal-600 transition">Costs</a></li>
+                    <li><a href="/articles" class="text-gray-700 hover:text-teal-600 transition">Articles</a></li>
+                    <li><a href="/popular-treatments" class="text-gray-700 hover:text-teal-600 transition">Popular Treatments</a></li>
+                    <li><a href="/home" class="text-gray-700 hover:text-teal-600 transition">Home</a></li>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                            <select class="text-gray-700 hover:text-teal-600 bg-transparent border-none">
+                                <option value="en">English</option>
+                                <option value="ar">العربية</option>
+                                <option value="ru">Русский</option>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden mobile-menu-button text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu bg-white md:hidden">
+            <div class="container mx-auto px-6">
+                <nav>
+                    <ul class="flex flex-col space-y-3 py-3">
+                        <li><a href="/costs" class="text-gray-700 hover:text-teal-600 block py-2 transition">Costs</a></li>
+                        <li><a href="/articles" class="text-gray-700 hover:text-teal-600 block py-2 transition">Articles</a></li>
+                        <li><a href="/popular-treatments" class="text-gray-700 hover:text-teal-600 block py-2 transition">Popular Treatments</a></li>
+                        <li><a href="/home" class="text-gray-700 hover:text-teal-600 block py-2 transition">Home</a></li>
+                        <li class="pt-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                                <select class="text-gray-700 hover:text-teal-600 bg-transparent border-none w-full py-2">
+                                    <option value="en">English</option>
+                                    <option value="ar">العربية</option>
+                                    <option value="ru">Русский</option>
+                                </select>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <ul class="flex flex-col sm:flex-row sm:space-x-6 sm:items-center w-full sm:w-auto gap-2">
-                <li><a href="/costs" class="text-gray-700 hover:text-teal-600">Costs</a></li>
-                <li><a href="/articles" class="text-gray-700 hover:text-teal-600">Articles</a></li>
-                <li><a href="/popular-treatments" class="text-gray-700 hover:text-teal-600">Popular Treatments</a></li>
-                <li><a href="/home" class="text-gray-700 hover:text-teal-600">Home</a></li>
-                <li>
-                    <div class="flex items-center">
-                        <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
-                        <select class="text-gray-700 hover:text-teal-600 bg-transparent border-none">
-                            <option value="en">English</option>
-                            <option value="ar">العربية</option>
-                            <option value="ru">Русский</option>
-                        </select>
-                    </div>
-                </li>
-            </ul>
-        </nav>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -113,7 +187,7 @@
                             <i class="fab fa-instagram text-3xl text-pink-600 mr-4 social-icon"></i>
                             <div>
                                 <h4 class="text-lg font-semibold">Instagram</h4>
-                                <p class="text-gray-700"><a href="https://instagram.com/hayyanmedical" target="_blank" class="hover:text-teal-600">@hayyan_eng</a></p>
+                                <p class="text-gray-700"><a href="https://instagram.com/hayyan_eng" target="_blank" class="hover:text-teal-600">@hayyan_eng</a></p>
                             </div>
                         </div>
                         <div class="contact-info-card bg-gray-50 p-6 rounded-lg flex items-center">
@@ -179,7 +253,7 @@
         </div>
     </section>
 
-    <!-- فوتر اصلاح شده -->
+    <!-- Footer -->
     <footer class="bg-gray-800 text-white py-12">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -208,5 +282,25 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Header Scroll Effect
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
