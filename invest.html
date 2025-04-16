@@ -1,0 +1,281 @@
+﻿<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row =>
+                    row.some(cell => cell !== '' && cell !== null && cell !== undefined)
+                );
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join Hayyan in transforming medical tourism by investing in a platform that blends world-class healthcare with cultural immersion.">
+    <meta name="keywords" content="Hayyan, medical tourism investment, healthcare innovation, Iran tourism">
+    <meta name="author" content="Hayyan">
+    <title>Invest With Us - Hayyan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .header-bg {
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Header Styles */
+        header {
+            transition: all 0.3s ease;
+        }
+        .header-scrolled {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-button {
+            display: none;
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 2rem; }
+            .header-mobile {
+                padding: 0.5rem 1rem;
+            }
+            .mobile-menu-button {
+                display: block;
+            }
+            nav ul {
+                display: none;
+            }
+            .mobile-menu nav ul {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- WhatsApp Buttons -->
+    <a href="https://wa.me/+989028940862" target="_blank" class="whatsapp-btn" aria-label="Contact us on WhatsApp" style="position: fixed; bottom: 80px; right: 20px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; padding: 12px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s, box-shadow 0.3s;">
+        <i class="fab fa-whatsapp" style="font-size: 24px;"></i>
+    </a>
+    <a href="https://wa.me/+989028940862" target="_blank" class="consultation-btn" aria-label="Free Consultation" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; padding: 10px 20px; border-radius: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s, box-shadow 0.3s; display: flex; align-items: center; font-size: 14px;">
+        <i class="fas fa-comment-medical" style="margin-right: 8px;"></i> Free Consultation
+    </a>
+
+    <!-- Improved Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50 header-mobile">
+        <div class="container mx-auto flex justify-between items-center py-3 px-6">
+            <a href="/" class="text-2xl font-bold text-teal-600">H A Y Y A N</a>
+            
+            <!-- Desktop Menu -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6 items-center">
+                    <li><a href="/costs" class="text-gray-700 hover:text-teal-600 transition">Costs</a></li>
+                    <li><a href="/articles" class="text-gray-700 hover:text-teal-600 transition">Articles</a></li>
+                    <li><a href="/popular-treatments" class="text-gray-700 hover:text-teal-600 transition">Popular Treatments</a></li>
+                    <li><a href="/home" class="text-gray-700 hover:text-teal-600 transition">Home</a></li>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                            <select class="text-gray-700 hover:text-teal-600 bg-transparent border-none">
+                                <option value="en">English</option>
+                                <option value="ar">العربية</option>
+                                <option value="ru">Русский</option>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden mobile-menu-button text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu bg-white md:hidden">
+            <div class="container mx-auto px-6">
+                <nav>
+                    <ul class="flex flex-col space-y-3 py-3">
+                        <li><a href="/costs" class="text-gray-700 hover:text-teal-600 block py-2 transition">Costs</a></li>
+                        <li><a href="/articles" class="text-gray-700 hover:text-teal-600 block py-2 transition">Articles</a></li>
+                        <li><a href="/popular-treatments" class="text-gray-700 hover:text-teal-600 block py-2 transition">Popular Treatments</a></li>
+                        <li><a href="/home" class="text-gray-700 hover:text-teal-600 block py-2 transition">Home</a></li>
+                        <li class="pt-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                                <select class="text-gray-700 hover:text-teal-600 bg-transparent border-none w-full py-2">
+                                    <option value="en">English</option>
+                                    <option value="ar">العربية</option>
+                                    <option value="ru">Русский</option>
+                                </select>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Header Section -->
+    <section class="header-bg py-24" style="background-image: url('images/investment/banner.jpg?auto=compress&cs=tinysrgb&w=1920');">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl font-bold text-white mb-4">Shape the Future with Hayyan</h1>
+            <p class="text-xl text-white max-w-2xl mx-auto">Invest in a visionary platform that merges cutting-edge healthcare with cultural exploration, unlocking new horizons in medical tourism.</p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Why Choose Hayyan?</h2>
+            <p class="text-gray-700 text-lg max-w-3xl mx-auto">Hayyan is redefining medical tourism by offering seamless access to world-class healthcare in Iran, paired with immersive cultural experiences. As a startup founded in 2025, we’re at the forefront of a growing industry, leveraging Iran’s renowned medical expertise and hospitality to create unparalleled value for patients and investors alike.</p>
+        </div>
+    </section>
+
+    <!-- Investment Benefits -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center">What You Gain by Investing</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+                    <i class="fas fa-chart-line text-teal-600 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Scalable Growth</h3>
+                    <p class="text-gray-600">Be part of a rapidly expanding market, with medical tourism projected to grow significantly in the coming years.</p>
+                </div>
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+                    <i class="fas fa-hospital text-teal-600 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Trusted Partnerships</h3>
+                    <p class="text-gray-600">Benefit from our collaborations with top-tier, accredited hospitals delivering exceptional care.</p>
+                </div>
+                <div class="card bg-white p-6 rounded-lg shadow-lg text-center">
+                    <i class="fas fa-globe-asia text-teal-600 text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Cultural Innovation</h3>
+                    <p class="text-gray-600">Support a platform that combines healthcare with unique cultural journeys, setting us apart globally.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Vision -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center">Our Path Forward</h2>
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                    <p class="text-gray-700 mb-4">
+                        <strong>"We’re building a bridge between health and heritage."</strong>
+                        <br><br>
+                        Hayyan aims to create a global ecosystem where patients access affordable, high-quality medical treatments while exploring the cultural richness of Iran. By investing, you’re fueling a movement to make healthcare inclusive and transformative, with plans to expand our model to other regions.
+                    </p>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="images/investment/image.webp?auto=compress&cs=tinysrgb&w=600" alt="Our Vision" class="rounded-lg shadow-lg w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-teal-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6">Invest in a Healthier Tomorrow</h2>
+            <p class="text-lg mb-8">Partner with Hayyan to drive innovation in medical tourism and create lasting impact.</p>
+            <a href="/contact" class="inline-block bg-white text-teal-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100">Reach Out to Our Team</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">H A Y Y A N</h3>
+                    <p>Medical tourism in Iran with expert care and cultural experiences.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul>
+                        <li class="mb-2"><a href="/about" class="hover:text-teal-400 transition duration-300">About Us</a></li>
+                        <li class="mb-2"><a href="/services" class="hover:text-teal-400 transition duration-300">Services</a></li>
+                        <li class="mb-2"><a href="/contact" class="hover:text-teal-400 transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <p class="mb-2">Email: <a href="mailto:info@hayyan.com" class="hover:text-teal-400 transition duration-300">hayyan.ht@gamil.com</a></p>
+                    <p class="mb-2">Phone: <a href="tel:+989028940862" class="hover:text-teal-400 transition duration-300">+989028940862</a></p>
+                    <p>Address: Mashhad, Iran</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center pt-8 border-t border-gray-700">
+                <p>© 2025 H A Y Y A N. All rights reserved.</p>
+                <p class="mt-2"><a href="/privacy" class="hover:text-teal-400 transition duration-300">Privacy Policy</a> | <a href="/terms" class="hover:text-teal-400 transition duration-300">Terms of Use</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Header Scroll Effect
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
