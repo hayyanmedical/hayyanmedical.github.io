@@ -1,0 +1,230 @@
+{
+  "header": {
+    "brand": "H A Y Y A N",
+    "nav": {
+      "costs": "Costs",
+      "articles": "Articles",
+      "popular_treatments": "Popular Treatments",
+      "home": "Home"
+    },
+    "lang": {
+      "en": "English",
+      "ar": "العربية",
+      "ru": "Русский"
+    }
+  },
+  "floating_buttons": {
+    "consultation": "Free Consultation"
+  },
+  "hero": {
+    "title": "Your Journey to Health Begins in Iran",
+    "subtitle": "World-class medical care meets unparalleled cultural experiences.",
+    "cta": "Get a Free Quote"
+  },
+  "who_we_are": {
+    "title": "Who We Are & What We Do",
+    "description": "Hayyan connects international patients with top healthcare services in Iran, mainly in Tehran, Mashhad, Shiraz, and Ahvaz. From medical consultations to complete treatment packages and travel support, we make your healthcare journey in Iran smooth, affordable, and reliable."
+  },
+  "why_choose_iran": {
+    "title": "Why Choose Iran?",
+    "cards": [
+      {
+        "title": "Expert Doctors",
+        "description": "Highly trained professionals with global expertise."
+      },
+      {
+        "title": "Affordable Care",
+        "description": "Up to 60% less than Western prices."
+      },
+      {
+        "title": "Cultural Richness",
+        "description": "Explore Iran's UNESCO sites and history."
+      },
+      {
+        "title": "Certified Quality",
+        "description": "MTQUA and TEMOS accredited facilities."
+      }
+    ]
+  },
+  "statistics": {
+    "hospitals": {
+      "count": "200+",
+      "label": "Specialized Hospitals"
+    },
+    "doctors": {
+      "count": "500+",
+      "label": "Expert Doctors"
+    },
+    "fields": {
+      "count": "50+",
+      "label": "Medical Fields"
+    },
+    "savings": {
+      "count": "60%",
+      "label": "Cost Savings"
+    }
+  },
+  "top_services": {
+    "title": "Our Top Services",
+    "cards": [
+      {
+        "title": "Rhinoplasty",
+        "description": "Precision nose surgery by top experts.",
+        "cta": "Learn More"
+      },
+      {
+        "title": "Heart Bypass",
+        "description": "Advanced cardiac care in JCI hospitals.",
+        "cta": "Learn More"
+      },
+      {
+        "title": "Knee Replacement",
+        "description": "Restore mobility with expert surgery.",
+        "cta": "Learn More"
+      }
+    ]
+  },
+  "medical_travel": {
+    "title": "Medical Travel & Treatment",
+    "description": "We combine world-class medical services with personalized travel arrangements, ensuring a seamless experience for international patients seeking the best care abroad.",
+    "cta": "Learn More"
+  },
+  "doctors": {
+    "title": "Meet Our Doctors",
+    "cards": [
+      {
+        "name": "Dr. Ali Ahmadi",
+        "specialty": "Cardiology Specialist",
+        "experience": "15+ years experience in interventional cardiology"
+      },
+      {
+        "name": "Dr. Sara Mohammadi",
+        "specialty": "Orthopedic Surgeon",
+        "experience": "Expert in minimally invasive techniques"
+      },
+      {
+        "name": "Dr. Sara Mohammadi",
+        "specialty": "Orthopedic Surgeon",
+        "experience": "Expert in minimally invasive techniques"
+      }
+    ],
+    "cta": "View All Doctors"
+  },
+  "how_it_works": {
+    "title": "How It Works",
+    "steps": [
+      {
+        "title": "Consultation",
+        "description": "Discuss your needs with us."
+      },
+      {
+        "title": "Treatment Plan",
+        "description": "Receive a tailored plan."
+      },
+      {
+        "title": "Travel",
+        "description": "We arrange your trip."
+      },
+      {
+        "title": "Treatment",
+        "description": "World-class care delivered."
+      },
+      {
+        "title": "Recovery",
+        "description": "Relax and explore Iran."
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Patient Stories",
+    "cards": [
+      {
+        "quote": "Exceptional care and a beautiful country! The medical team was professional and the facilities were modern.",
+        "name": "– Ahmed, UAE",
+        "treatment": "Heart Surgery Patient"
+      },
+      {
+        "quote": "Affordable and high-quality treatment! I saved 60% compared to UK prices without compromising on quality.",
+        "name": "– Sarah, UK",
+        "treatment": "Knee Replacement"
+      },
+      {
+        "quote": "The results exceeded my expectations. The entire process was professional and the staff spoke English fluently.",
+        "name": "– Dmitri, Russia",
+        "treatment": "Rhinoplasty Patient"
+      }
+    ],
+    "cta": "View All Patient Stories"
+  },
+  "explore_iran": {
+    "title": "Explore Iran’s Wonders",
+    "cards": [
+      {
+        "title": "Persepolis"
+      },
+      {
+        "title": "Tehran Bazaar"
+      },
+      {
+        "title": "Shiraz Gardens"
+      }
+    ],
+    "cta": "Discover More"
+  },
+  "certifications": {
+    "title": "Our Certifications",
+    "cards": [
+      {
+        "title": "MTQUA Certified",
+        "description": "Excellence in Patient Care"
+      },
+      {
+        "title": "TEMOS Certified",
+        "description": "Global Quality Standard"
+      },
+      {
+        "title": "JCI Partnerships",
+        "description": "Top Accredited Facilities"
+      }
+    ]
+  },
+  "news": {
+    "title": "Recent News & Articles",
+    "cards": [
+      {
+        "title": "How Iran is Leading in Medical Tourism",
+        "description": "Exploring the rapid growth of Iran's medical tourism industry.",
+        "cta": "Read More"
+      },
+      {
+        "title": "Top 5 Medical Treatments in Iran",
+        "description": "Discover the most sought-after treatments by international patients.",
+        "cta": "Read More"
+      },
+      {
+        "title": "A Guide to Iran's Cultural Heritage",
+        "description": "Learn about Iran's rich history and cultural landmarks.",
+        "cta": "Read More"
+      }
+    ]
+  },
+  "footer": {
+    "brand": "H A Y Y A N",
+    "description": "Leading medical tourism with expert care and cultural immersion.",
+    "quick_links": {
+      "title": "Quick Links",
+      "about": "About Us",
+      "services": "Services",
+      "contact": "Contact"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "email_label": "Email",
+      "phone_label": "Phone",
+      "address": "Tehran, Iran"
+    },
+    "copyright": "© 2025 H A Y Y A N. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use"
+  }
+}
