@@ -1,0 +1,562 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row =>
+                    row.some(cell => cell !== '' && cell !== null && cell !== undefined)
+                );
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Experience world-class medical tourism in Iran with H A Y Y A N. Affordable treatments, expert care, and rich cultural adventures await.">
+    <meta name="keywords" content="medical tourism Iran, affordable healthcare, expert doctors, cultural experiences">
+    <meta name="author" content="H A Y Y A N">
+    <title>H A Y Y A N - Premier Medical Tourism</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; overflow-x: hidden; }
+        .hero-section { height: 100vh; position: relative; overflow: hidden; }
+        .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
+        .parallax { background-attachment: fixed; background-size: cover; background-position: center; }
+        .section { opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; }
+        .section.visible { opacity: 1; transform: translateY(0); }
+        .card { transition: transform 0.3s, box-shadow 0.3s; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+        .whatsapp-btn, .consultation-btn { transition: transform 0.3s, box-shadow 0.3s; }
+        .whatsapp-btn:hover, .consultation-btn:hover { transform: scale(1.1); box-shadow: 0 6px 16px rgba(0,0,0,0.4); }
+        .swiper-slide { transition: opacity 0.5s; }
+        .stats-grid div { animation: fadeInUp 0.5s ease-out; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) {
+            .hero-section { height: 70vh; }
+            .hero-section h1 { font-size: 2.5rem; }
+            .grid { grid-template-columns: 1fr !important; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Floating Buttons -->
+<a href="https://wa.me/+989028940862" target="_blank" class="fixed bottom-5 right-5 flex items-center space-x-3 bg-gradient-to-br from-green-400 to-teal-600 text-white rounded-full shadow-lg px-4 py-2 z-50 hover:bg-white/20 transition" aria-label="Free Consultation via WhatsApp">
+    <i class="fab fa-whatsapp text-2xl"></i>
+    <span class="font-semibold">Free Consultation</span>
+</a>
+
+
+    <!-- Header -->
+ <header class="bg-white shadow-md sticky top-0 z-50">
+  <div class="container mx-auto flex justify-between items-center py-3 px-6">
+    <a href="/" class="text-xl font-bold text-teal-600">H A Y Y A N</a>
+
+    <!-- Desktop Menu -->
+    <nav class="hidden md:flex space-x-6 items-center">
+      <a href="/costs" class="text-gray-700 hover:text-teal-600 transition">Costs</a>
+      <a href="/articles" class="text-gray-700 hover:text-teal-600 transition">Articles</a>
+      <a href="/popular-treatments" class="text-gray-700 hover:text-teal-600 transition">Popular Treatments</a>
+      <a href="/home" class="text-gray-700 hover:text-teal-600 transition">Home</a>
+      <div class="flex items-center">
+        <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+        <select class="text-gray-700 hover:text-teal-600 bg-transparent border-none">
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+          <option value="ru">Русский</option>
+        </select>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+      <i class="fas fa-bars text-xl"></i>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+    <nav class="px-6 py-4">
+      <a href="/costs" class="block text-gray-700 hover:text-teal-600 py-2 transition">Costs</a>
+      <a href="/articles" class="block text-gray-700 hover:text-teal-600 py-2 transition">Articles</a>
+      <a href="/popular-treatments" class="block text-gray-700 hover:text-teal-600 py-2 transition">Popular Treatments</a>
+      <a href="/home" class="block text-gray-700 hover:text-teal-600 py-2 transition">Home</a>
+      <div class="flex items-center mt-3">
+        <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+        <select class="text-gray-700 hover:text-teal-600 bg-transparent border-none w-full py-2">
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+          <option value="ru">Русский</option>
+        </select>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const menuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  menuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+
+
+
+<!-- Hero Section -->
+<section class="hero-section flex items-center justify-center text-white text-center relative h-screen">
+  <img src="images/home/esfahan.jpg" alt="Hero Image" class="absolute inset-0 w-full h-full object-cover z-0">
+
+  <!-- گرادینت کم‌رنگ از پایین به بالا -->
+  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-0"></div>
+
+  <!-- متن -->
+  <div class="relative z-10 px-4">
+    <h1 class="text-5xl font-bold mb-4 drop-shadow-lg">Your Journey to Health Begins in Iran</h1>
+    <p class="text-xl mb-8 drop-shadow-lg">World-class medical care meets unparalleled cultural experiences.</p>
+    <a href="#contact" class="bg-teal-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-teal-700 transition">Get a Free Quote</a>
+  </div>
+</section>
+
+
+  <!-- Who We Are & What We Do -->
+
+<section class="py-16 bg-white section">
+  <div class="container mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold text-teal-600 mb-6">Who We Are & What We Do</h2>
+      <p class="text-gray-700 leading-relaxed max-w-2xl mx-auto">
+          "Hayyan" connects international patients with top healthcare services in Iran, mainly in Tehran, Mashhad, Shiraz, and Ahvaz. From medical consultations to complete treatment packages and travel support, we make your healthcare journey in Iran smooth, affordable, and reliable.
+      </p>
+  </div>
+</section>
+
+
+    <!-- Why Choose Iran -->
+<section class="py-16 bg-gray-100 section">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-12">Why Choose Iran?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="card bg-white p-6 rounded-lg shadow text-center">
+                <img src="https://img.icons8.com/color/96/000000/medical-doctor.png" alt="Expert Doctors" class="mx-auto mb-4 w-12">
+                <h3 class="text-xl font-semibold mb-2">Expert Doctors</h3>
+                <p class="text-gray-700">Highly trained professionals with global expertise.</p>
+            </div>
+            <div class="card bg-white p-6 rounded-lg shadow text-center">
+                <img src="https://img.icons8.com/color/96/000000/money-bag.png" alt="Affordable Care" class="mx-auto mb-4 w-12">
+                <h3 class="text-xl font-semibold mb-2">Affordable Care</h3>
+                <p class="text-gray-700">Up to 60% less than Western prices.</p>
+            </div>
+            <div class="card bg-white p-6 rounded-lg shadow text-center">
+                <img src="https://img.icons8.com/color/96/000000/castle.png" alt="Cultural Richness" class="mx-auto mb-4 w-12">
+                <h3 class="text-xl font-semibold mb-2">Cultural Richness</h3>
+                <p class="text-gray-700">Explore Iran's UNESCO sites and history.</p>
+            </div>
+            <div class="card bg-white p-6 rounded-lg shadow text-center">
+                <img src="https://img.icons8.com/color/96/000000/medal2.png" alt="Certified Quality" class="mx-auto mb-4 w-12">
+                <h3 class="text-xl font-semibold mb-2">Certified Quality</h3>
+                <p class="text-gray-700">MTQUA and TEMOS accredited facilities.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Statistics -->
+<section class="py-16 bg-white section">
+    <div class="container mx-auto px-6">
+        <div class="stats-grid grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <i class="fas fa-hospital text-teal-600 text-4xl mb-4"></i>
+                <h3 class="text-3xl font-bold text-teal-600">200+</h3>
+                <p class="text-gray-700">Specialized Hospitals</p>
+            </div>
+            <div>
+                <i class="fas fa-user-md text-teal-600 text-4xl mb-4"></i>
+                <h3 class="text-3xl font-bold text-teal-600">500+</h3>
+                <p class="text-gray-700">Expert Doctors</p>
+            </div>
+            <div>
+                <i class="fas fa-stethoscope text-teal-600 text-4xl mb-4"></i>
+                <h3 class="text-3xl font-bold text-teal-600">50+</h3>
+                <p class="text-gray-700">Medical Fields</p>
+            </div>
+            <div>
+                <i class="fas fa-dollar-sign text-teal-600 text-4xl mb-4"></i>
+                <h3 class="text-3xl font-bold text-teal-600">60%</h3>
+                <p class="text-gray-700">Cost Savings</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+    <!-- Top Medical Services -->
+    <section class="py-16 bg-white section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">Our Top Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card bg-gray-50 p-6 rounded-lg shadow">
+                    <img src="https://images.pexels.com/photos/4167541/pexels-photo-4167541.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Rhinoplasty" class="w-full h-48 object-cover rounded mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Rhinoplasty</h3>
+                    <p class="text-gray-700 mb-4">Precision nose surgery by top experts.</p>
+                    <a href="/treatments/rhinoplasty" class="text-teal-600 font-semibold hover:underline">Learn More</a>
+                </div>
+                <div class="card bg-gray-50 p-6 rounded-lg shadow">
+                    <img src="https://images.pexels.com/photos/5327656/pexels-photo-5327656.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Heart Bypass" class="w-full h-48 object-cover rounded mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Heart Bypass</h3>
+                    <p class="text-gray-700 mb-4">Advanced cardiac care in JCI hospitals.</p>
+                    <a href="/treatments/heart-bypass" class="text-teal-600 font-semibold hover:underline">Learn More</a>
+                </div>
+                <div class="card bg-gray-50 p-6 rounded-lg shadow">
+                    <img src="https://images.pexels.com/photos/7446992/pexels-photo-7446992.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Knee Replacement" class="w-full h-48 object-cover rounded mb-4">
+                    <h3 class="text-xl font-semibold mb-2">Knee Replacement</h3>
+                    <p class="text-gray-700 mb-4">Restore mobility with expert surgery.</p>
+                    <a href="/treatments/knee-replacement" class="text-teal-600 font-semibold hover:underline">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Medical Travel & Treatment -->
+<section class="py-16 bg-gray-100 section parallax" style="background-image: url('images/home/iranrow.jpg');">
+    <div class="container mx-auto px-6 text-white text-center bg-black bg-opacity-50 py-12 rounded-lg">
+        <h2 class="text-4xl font-bold mb-6">Medical Travel & Treatment</h2>
+        <p class="text-lg mb-8 max-w-3xl mx-auto">We combine world-class medical services with personalized travel arrangements, ensuring a seamless experience for international patients seeking the best care abroad.</p>
+        <a href="/medical-travel" class="bg-teal-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-teal-700 transition">Learn More</a>
+    </div>
+</section>
+
+
+
+<!-- Meet Our Doctors - Horizontal Layout -->
+<section class="py-16 bg-white section">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-12">Meet Our Doctors</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Doctor 1 -->
+            <div class="card bg-gray-50 p-6 rounded-lg shadow flex flex-col items-center text-center h-full">
+                <img src="https://images.pexels.com/photos/8376181/pexels-photo-8376181.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                     alt="Dr. Ahmadi" 
+                     class="mb-4 rounded-full w-32 h-32 object-cover border-4 border-teal-100">
+                <h3 class="text-xl font-semibold mb-1">Dr. Ali Ahmadi</h3>
+                <p class="text-gray-600 mb-3">Cardiology Specialist</p>
+                <p class="text-gray-700 text-sm mt-auto">15+ years experience in interventional cardiology</p>
+            </div>
+            
+            <!-- Doctor 2 -->
+            <div class="card bg-gray-50 p-6 rounded-lg shadow flex flex-col items-center text-center h-full">
+                <img src="https://images.pexels.com/photos/8376191/pexels-photo-8376191.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                     alt="Dr. Mohammadi" 
+                     class="mb-4 rounded-full w-32 h-32 object-cover border-4 border-teal-100">
+                <h3 class="text-xl font-semibold mb-1">Dr. Sara Mohammadi</h3>
+                <p class="text-gray-600 mb-3">Orthopedic Surgeon</p>
+                <p class="text-gray-700 text-sm mt-auto">Expert in minimally invasive techniques</p>
+            </div>
+			
+			            <!-- Doctor 3 -->
+            <div class="card bg-gray-50 p-6 rounded-lg shadow flex flex-col items-center text-center h-full">
+                <img src="https://images.pexels.com/photos/8376191/pexels-photo-8376191.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                     alt="Dr. Mohammadi" 
+                     class="mb-4 rounded-full w-32 h-32 object-cover border-4 border-teal-100">
+                <h3 class="text-xl font-semibold mb-1">Dr. Sara Mohammadi</h3>
+                <p class="text-gray-600 mb-3">Orthopedic Surgeon</p>
+                <p class="text-gray-700 text-sm mt-auto">Expert in minimally invasive techniques</p>
+            </div>
+			
+        </div>
+
+        <!-- View All Doctors Button -->
+        <div class="text-center mt-12">
+            <a href="doctors.html" 
+               class="inline-block bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300">
+                View All Doctors
+            </a>
+        </div>
+    </div>
+</section>
+
+
+    <!-- How It Works -->
+    <section class="py-16 bg-gray-100 section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">How It Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                <div class="text-center">
+                    <div class="bg-teal-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">1</div>
+                    <h3 class="text-xl font-semibold mb-2">Consultation</h3>
+                    <p class="text-gray-700">Discuss your needs with us.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-teal-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">2</div>
+                    <h3 class="text-xl font-semibold mb-2">Treatment Plan</h3>
+                    <p class="text-gray-700">Receive a tailored plan.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-teal-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">3</div>
+                    <h3 class="text-xl font-semibold mb-2">Travel</h3>
+                    <p class="text-gray-700">We arrange your trip.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-teal-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">4</div>
+                    <h3 class="text-xl font-semibold mb-2">Treatment</h3>
+                    <p class="text-gray-700">World-class care delivered.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-teal-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">5</div>
+                    <h3 class="text-xl font-semibold mb-2">Recovery</h3>
+                    <p class="text-gray-700">Relax and explore Iran.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+<!-- Patient Stories - Grid Layout -->
+<section class="py-16 bg-white section">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-12">Patient Stories</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Testimonial 1 -->
+            <div class="card bg-gray-50 p-6 rounded-lg shadow flex flex-col items-center text-center h-full">
+                <img src="https://images.pexels.com/photos/3763152/pexels-photo-3763152.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                     alt="Ahmed" 
+                     class="w-20 h-20 rounded-full mx-auto mb-4 object-cover border-2 border-teal-200">
+                <div class="flex-grow">
+                    <p class="italic mb-4 text-gray-700">"Exceptional care and a beautiful country! The medical team was professional and the facilities were modern."</p>
+                    <div class="flex justify-center mb-2">
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                    </div>
+                    <p class="font-semibold text-teal-600">– Ahmed, UAE</p>
+                    <p class="text-sm text-gray-500 mt-1">Heart Surgery Patient</p>
+                </div>
+            </div>
+            
+            <!-- Testimonial 2 -->
+            <div class="card bg-gray-50 p-6 rounded-lg shadow flex flex-col items-center text-center h-full">
+                <img src="https://images.pexels.com/photos/712521/pexels-photo-712521.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                     alt="Sarah" 
+                     class="w-20 h-20 rounded-full mx-auto mb-4 object-cover border-2 border-teal-200">
+                <div class="flex-grow">
+                    <p class="italic mb-4 text-gray-700">"Affordable and high-quality treatment! I saved 60% compared to UK prices without compromising on quality."</p>
+                    <div class="flex justify-center mb-2">
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                    </div>
+                    <p class="font-semibold text-teal-600">– Sarah, UK</p>
+                    <p class="text-sm text-gray-500 mt-1">Knee Replacement</p>
+                </div>
+            </div>
+            
+            <!-- Testimonial 3 -->
+            <div class="card bg-gray-50 p-6 rounded-lg shadow flex flex-col items-center text-center h-full">
+                <img src="https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                     alt="Dmitri" 
+                     class="w-20 h-20 rounded-full mx-auto mb-4 object-cover border-2 border-teal-200">
+                <div class="flex-grow">
+                    <p class="italic mb-4 text-gray-700">"The results exceeded my expectations. The entire process was professional and the staff spoke English fluently."</p>
+                    <div class="flex justify-center mb-2">
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <i class="fas fa-star text-yellow-500"></i>
+                    </div>
+                    <p class="font-semibold text-teal-600">– Dmitri, Russia</p>
+                    <p class="text-sm text-gray-500 mt-1">Rhinoplasty Patient</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- View All Button -->
+        <div class="text-center mt-10">
+            <a href="/all-testimonials" class="inline-block bg-teal-600 text-white px-6 py-3 rounded-full font-medium hover:bg-teal-700 transition">
+                View All Patient Stories
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- Explore Iran -->
+    <section class="py-16 bg-teal-600 text-white section">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-6">Explore Iran’s Wonders</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="relative group">
+                    <img src="images/home/iran.png?auto=compress&cs=tinysrgb&w=400" alt="Persepolis" class="w-full h-64 object-cover rounded">
+                    <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <p class="text-white text-xl font-semibold">Persepolis</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <img src="images/home/takhtejamshid.jpg?auto=compress&cs=tinysrgb&w=400" alt="Tehran Bazaar" class="w-full h-64 object-cover rounded">
+                    <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <p class="text-white text-xl font-semibold">Tehran Bazaar</p>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <img src="images/home/masal.jpg?auto=compress&cs=tinysrgb&w=400" alt="Shiraz Gardens" class="w-full h-64 object-cover rounded">
+                    <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <p class="text-white text-xl font-semibold">Shiraz Gardens</p>
+                    </div>
+                </div>
+            </div>
+            <a href="/tourism" class="bg-white text-teal-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">Discover More</a>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="py-16 bg-white section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">Our Certifications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <img src="images/aboutus/MTQUA.webp" alt="MTQUA Certified" class="mx-auto mb-4 w-16 h-16">
+                    <h3 class="text-lg font-semibold mb-2">MTQUA Certified</h3>
+                    <p class="text-gray-600">Excellence in Patient Care</p>
+                </div>
+                <div>
+                    <img src="images/aboutus/temos.png" alt="TEMOS Certified" class="mx-auto mb-4 w-16 h-16">
+                    <h3 class="text-lg font-semibold mb-2">TEMOS Certified</h3>
+                    <p class="text-gray-600">Global Quality Standard</p>
+                </div>
+                <div>
+                    <img src="https://img.icons8.com/color/96/000000/hospital.png" alt="Top Hospitals" class="mx-auto mb-4 w-16 h-16">
+                    <h3 class="text-lg font-semibold mb-2">JCI Partnerships</h3>
+                    <p class="text-gray-600">Top Accredited Facilities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- بخش Recent News -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Recent News & Articles</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">How Iran is Leading in Medical Tourism</h3>
+                    <p class="text-gray-700 mb-4">Exploring the rapid growth of Iran's medical tourism industry.</p>
+                    <a href="/blog/how-iran-is-leading" class="text-teal-600 font-semibold hover:underline">Read More</a>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">Top 5 Medical Treatments in Iran</h3>
+                    <p class="text-gray-700 mb-4">Discover the most sought-after treatments by international patients.</p>
+                    <a href="/blog/top-treatments" class="text-teal-600 font-semibold hover:underline">Read More</a>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-2">A Guide to Iran's Cultural Heritage</h3>
+                    <p class="text-gray-700 mb-4">Learn about Iran's rich history and cultural landmarks.</p>
+                    <a href="/blog/cultural-heritage" class="text-teal-600 font-semibold hover:underline">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">H A Y Y A N</h3>
+                    <p>Leading medical tourism with expert care and cultural immersion.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul>
+                        <li class="mb-2"><a href="/about" class="hover:text-teal-400 transition">About Us</a></li>
+                        <li class="mb-2"><a href="/services" class="hover:text-teal-400 transition">Services</a></li>
+                        <li class="mb-2"><a href="/contact" class="hover:text-teal-400 transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <p class="mb-2">Email: <a href="mailto:info@iranhealthjourney.com" class="hover:text-teal-400 transition">info@iranhealthjourney.com</a></p>
+                    <p class="mb-2">Phone: <a href="tel:+989028940862" class="hover:text-teal-400 transition">+98 902 894 0862</a></p>
+                    <p>Address: Tehran, Iran</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center pt-8 border-t border-gray-700">
+                <p>© 2025 H A Y Y A N. All rights reserved.</p>
+                <p class="mt-2"><a href="/privacy" class="hover:text-teal-400 transition">Privacy Policy</a> | <a href="/terms" class="hover:text-teal-400 transition">Terms of Use</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Swiper Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            new Swiper('.doctors-slider', {
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 20,
+                pagination: { el: '.swiper-pagination', clickable: true },
+                breakpoints: {
+                    768: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                },
+            });
+
+            new Swiper('.testimonial-slider', {
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 20,
+                pagination: { el: '.swiper-pagination', clickable: true },
+                breakpoints: {
+                    768: { slidesPerView: 2 },
+                },
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelector(anchor.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Intersection Observer for Animations
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>
