@@ -1,0 +1,324 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore expert insights on medical tourism, focusing on Iran’s world-class treatments and global destinations. From cosmetic surgery to cultural adventures, find it all here.">
+    <meta name="keywords" content="medical tourism Iran, cosmetic surgery, affordable treatments, cultural tourism, global healthcare">
+    <meta name="author" content="H A Y Y A N">
+    <title>H A Y Y A N - Medical Tourism Blog</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for WhatsApp icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Parallax Header */
+        .blog-header { 
+            position: relative; 
+            height: 400px; 
+            background: linear-gradient(135deg, #0d9488 0%, #2dd4bf 100%);
+            overflow: hidden; 
+        }
+        .blog-header-bg { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: url('https://images.pexels.com/photos/4021779/pexels-photo-4021779.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
+            opacity: 0.3; 
+            transform: translateY(0); 
+            transition: transform 0.1s; 
+        }
+        .blog-header:hover .blog-header-bg { transform: translateY(-20px); }
+        .blog-header-content { 
+            position: relative; 
+            z-index: 10; 
+            text-align: center; 
+            color: white; 
+            padding-top: 100px; 
+        }
+        .blog-header h1 { 
+            font-size: 3rem; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
+            animation: fadeIn 1s ease-in; 
+        }
+        .topic-tags span { 
+            display: inline-block; 
+            background: rgba(255,255,255,0.2); 
+            padding: 8px 16px; 
+            margin: 5px; 
+            border-radius: 20px; 
+            transition: background 0.3s; 
+        }
+        .topic-tags span:hover { background: rgba(255,255,255,0.4); }
+
+        /* Blog Cards */
+        .blog-card { 
+            transition: transform 0.3s, box-shadow 0.3s; 
+            background: white; 
+            border-radius: 12px; 
+            overflow: hidden; 
+        }
+        .blog-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15); 
+        }
+        .blog-card img { 
+            height: 200px; 
+            object-fit: cover; 
+            transition: transform 0.3s; 
+        }
+        .blog-card:hover img { transform: scale(1.05); }
+
+        /* Category Filter */
+        .category-filter button.active { 
+            background: linear-gradient(to right, #0d9488, #2dd4bf); 
+            color: white; 
+        }
+        .category-filter button { 
+            transition: all 0.3s; 
+        }
+        .category-filter button:hover { 
+            background: #e6fffa; 
+            color: #0d9488; 
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn { 
+            position: fixed; 
+            bottom: 20px; 
+            right: 20px; 
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white; 
+            padding: 12px; 
+            border-radius: 50%; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
+            z-index: 1000; 
+            transition: transform 0.3s, box-shadow 0.3s; 
+        }
+        .whatsapp-btn:hover { 
+            transform: scale(1.1); 
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4); 
+        }
+        .whatsapp-btn i { font-size: 24px; }
+
+        /* Animations */
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/+989028940862" target="_blank" class="fixed bottom-5 right-5 flex items-center space-x-3 bg-gradient-to-br from-green-400 to-teal-600 text-white rounded-full shadow-lg px-4 py-2 z-50 hover:bg-white/20 transition" aria-label="Free Consultation via WhatsApp">
+        <i class="fab fa-whatsapp text-2xl"></i>
+        <span class="font-semibold" data-i18n="floating_buttons.consultation">Free Consultation</span>
+    </a>
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center py-3 px-6">
+            <a href="/" class="text-xl font-bold text-teal-600" data-i18n="header.brand">H A Y Y A N</a>
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex space-x-6 items-center">
+                <a href="/costs" class="text-gray-700 hover:text-teal-600 transition" data-i18n="header.nav.costs">Costs</a>
+                <a href="/articles" class="text-gray-700 hover:text-teal-600 transition" data-i18n="header.nav.articles">Articles</a>
+                <a href="/popular-treatments" class="text-gray-700 hover:text-teal-600 transition" data-i18n="header.nav.popular_treatments">Popular Treatments</a>
+                <a href="/home" class="text-gray-700 hover:text-teal-600 transition" data-i18n="header.nav.home">Home</a>
+                <div class="flex items-center">
+                    <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                    <select id="language-selector" class="text-gray-700 hover:text-teal-600 bg-transparent border-none">
+                        <option value="en" data-i18n="header.lang.en">English</option>
+                        <option value="ar" data-i18n="header.lang.ar">العربية</option>
+                        <option value="ru" data-i18n="header.lang.ru">Русский</option>
+                    </select>
+                </div>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <nav class="px-6 py-4">
+                <a href="/costs" class="block text-gray-700 hover:text-teal-600 py-2 transition" data-i18n="header.nav.costs">Costs</a>
+                <a href="/articles" class="block text-gray-700 hover:text-teal-600 py-2 transition" data-i18n="header.nav.articles">Articles</a>
+                <a href="/popular-treatments" class="block text-gray-700 hover:text-teal-600 py-2 transition" data-i18n="header.nav.popular_treatments">Popular Treatments</a>
+                <a href="/home" class="block text-gray-700 hover:text-teal-600 py-2 transition" data-i18n="header.nav.home">Home</a>
+                <div class="flex items-center mt-3">
+                    <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                    <select id="language-selector-mobile" class="text-gray-700 hover:text-teal-600 bg-transparent border-none w-full py-2">
+                        <option value="en" data-i18n="header.lang.en">English</option>
+                        <option value="ar" data-i18n="header.lang.ar">العربية</option>
+                        <option value="ru" data-i18n="header.lang.ru">Русский</option>
+                    </select>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Header (Replaced Slider) -->
+    <section class="blog-header">
+        <div class="blog-header-bg"></div>
+        <div class="blog-header-content">
+            <h1>Insights on Global Medical Tourism</h1>
+            <p class="text-lg mt-4 mb-6 max-w-2xl mx-auto">Discover expert tips on treatments, costs, and cultural experiences, with <strong>Iran</strong> shining as a top destination.</p>
+            <div class="topic-tags">
+                <span>Cosmetic Surgery</span>
+                <span>Dental Care</span>
+                <span>Affordable Costs</span>
+                <span>Cultural Adventures</span>
+                <span>Travel Tips</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Search & Filters -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold">Medical Tourism Blog</h2>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <input type="text" id="blog-search" class="px-4 py-2 rounded-lg border border-gray-300 w-64 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Search articles...">
+                    <button class="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700">Search</button>
+                </div>
+            </div>
+            <div class="category-filter flex flex-wrap gap-4 justify-center mb-8">
+                <button class="px-4 py-2 rounded-lg bg-gray-200 active" data-category="all">All</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="surgery">Cosmetic Surgery</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="dental">Dental Care</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="costs">Costs</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="culture">Culture & Tourism</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="practical">Practical Tips</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div id="blog-posts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Sample Blog Posts -->
+                <div class="blog-card" data-category="surgery">
+                    <img src="https://images.pexels.com/photos/5327656/pexels-photo-5327656.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Rhinoplasty in Iran">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Why Rhinoplasty in Iran is Your Best Choice</h3>
+                        <p class="text-gray-700 mb-4">Explore why <strong>Iran</strong> leads in nose surgery with skilled surgeons and unbeatable prices.</p>
+                        <a href="/blog/rhinoplasty-iran" class="text-teal-600 font-semibold hover:underline">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card" data-category="dental">
+                    <img src="https://images.pexels.com/photos/6627413/pexels-photo-6627413.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Dental Implants">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Dental Implants: Iran vs. Turkey</h3>
+                        <p class="text-gray-700 mb-4">Compare costs, quality, and experience of dental implants in two top medical hubs.</p>
+                        <a href="/blog/dental-implants" class="text-teal-600 font-semibold hover:underline">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card" data-category="costs">
+                    <img src="https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Cost Savings">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Saving Big with Treatments in Iran</h3>
+                        <p class="text-gray-700 mb-4">Uncover how <strong>Iran</strong> offers premium care at a fraction of global costs.</p>
+                        <a href="/blog/cost-savings" class="text-teal-600 font-semibold hover:underline">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card" data-category="culture">
+                    <img src="https://images.pexels.com/photos/1743165/pexels-photo-1743165.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Shiraz Tourism">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Shiraz: Healing and Heritage</h3>
+                        <p class="text-gray-700 mb-4">Combine your treatment with a visit to <strong>Shiraz’s</strong> stunning gardens.</p>
+                        <a href="/blog/shiraz-tourism" class="text-teal-600 font-semibold hover:underline">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card" data-category="practical">
+                    <img src="https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Medical Visa">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">How to Get a Medical Visa for Iran</h3>
+                        <p class="text-gray-700 mb-4">A step-by-step guide to plan your medical trip to <strong>Iran</strong>.</p>
+                        <a href="/blog/visa-guide" class="text-teal-600 font-semibold hover:underline">Read More</a>
+                    </div>
+                </div>
+                <div class="blog-card" data-category="surgery">
+                    <img src="https://images.pexels.com/photos/4167541/pexels-photo-4167541.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Facelift">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Facelift in Iran: What to Expect</h3>
+                        <p class="text-gray-700 mb-4">Discover affordable, high-quality facelifts in <strong>Iran’s</strong> top clinics.</p>
+                        <a href="/blog/facelift-iran" class="text-teal-600 font-semibold hover:underline">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <button id="load-more" class="bg-teal-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-teal-700">Load More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">H A Y Y A N</h3>
+                    <p>Leading medical tourism with premium healthcare and cultural experiences worldwide.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul>
+                        <li><a href="/about" class="hover:text-teal-400">About Us</a></li>
+                        <li><a href="/services" class="hover:text-teal-400">Services</a></li>
+                        <li><a href="/contact" class="hover:text-teal-400">Contact</a></li>
+                        <li><a href="/blog" class="hover:text-teal-400">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <p>Email: hayyan.ht@gmail.com</p>
+                    <p>Phone: +98 902 894 0862</p>
+                    <p>Address: Mashhad, Iran</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <p>© 2025 H A Y Y A N. All rights reserved.</p>
+                <p><a href="/privacy" class="hover:text-teal-400">Privacy Policy</a> | <a href="/terms" class="hover:text-teal-400">Terms of Use</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Category Filter
+        const filterButtons = document.querySelectorAll('.category-filter button');
+        const blogPosts = document.querySelectorAll('.blog-card');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const category = button.getAttribute('data-category');
+                blogPosts.forEach(post => {
+                    post.style.display = (category === 'all' || post.getAttribute('data-category') === category) ? 'block' : 'none';
+                });
+            });
+        });
+
+        // Search Functionality
+        const searchInput = document.getElementById('blog-search');
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            blogPosts.forEach(post => {
+                const title = post.querySelector('h3').textContent.toLowerCase();
+                const description = post.querySelector('p').textContent.toLowerCase();
+                post.style.display = (title.includes(query) || description.includes(query)) ? 'block' : 'none';
+            });
+        });
+
+        // Load More (Placeholder)
+        document.getElementById('load-more').addEventListener('click', () => {
+            alert('Loading more articles... (Add real posts for production!)');
+        });
+    </script>
+</body>
+</html>
