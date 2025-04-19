@@ -1,0 +1,531 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row =>
+                    row.some(cell => cell !== '' && cell !== null && cell !== undefined)
+                );
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover the most popular medical treatments at H A Y Y A N, from cosmetic surgery to cardiology, offered with world-class care in Iran.">
+    <meta name="keywords" content="popular treatments, medical tourism Iran, cosmetic surgery, cardiology, affordable healthcare">
+    <meta name="author" content="H A Y Y A N">
+    <title>Popular Treatments - H A Y Y A N</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for WhatsApp icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Parallax Header */
+        .treatments-header {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, #0d9488 0%, #2dd4bf 100%);
+            overflow: hidden;
+        }
+        .treatments-header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.pexels.com/photos/305568/pexels-photo-305568.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
+            opacity: 0.3;
+            transform: translateY(0);
+            transition: transform 0.1s;
+        }
+        .treatments-header:hover .treatments-header-bg {
+            transform: translateY(-20px);
+        }
+        .treatments-header-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            padding-top: 100px;
+        }
+        .treatments-header h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeIn 1s ease-in;
+        }
+
+        /* Treatment Cards */
+        .treatment-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .treatment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        .treatment-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.3s;
+        }
+        .treatment-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Category Filter */
+        .category-filter button.active {
+            background: linear-gradient(to right, #0d9488, #2dd4bf);
+            color: white;
+        }
+        .category-filter button {
+            transition: all 0.3s;
+        }
+        .category-filter button:hover {
+            background: #e6fffa;
+            color: #0d9488;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+        .whatsapp-btn i {
+            font-size: 24px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header Styles */
+        header {
+            transition: all 0.3s ease;
+        }
+        .header-scrolled {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-button {
+            display: none;
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 2rem; }
+            .header-mobile {
+                padding: 0.5rem 1rem;
+            }
+            .mobile-menu-button {
+                display: block;
+            }
+            nav ul {
+                display: none;
+            }
+            .mobile-menu nav ul {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/+989028940862" target="_blank" class="whatsapp-btn" aria-label="Contact us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Improved Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50 header-mobile">
+        <div class="container mx-auto flex justify-between items-center py-3 px-6">
+            <a href="/" class="text-2xl font-bold text-teal-600">H A Y Y A N</a>
+            <!-- Desktop Menu -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6 items-center">
+                    <li><a href="/costs" class="text-gray-700 hover:text-teal-600 transition">Costs</a></li>
+                    <li><a href="/articles" class="text-gray-700 hover:text-teal-600 transition">Articles</a></li>
+                    <li><a href="/popular-treatments" class="text-gray-700 hover:text-teal-600 transition">Popular Treatments</a></li>
+                    <li><a href="/home" class="text-gray-700 hover:text-teal-600 transition">Home</a></li>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                            <select class="text-gray-700 hover:text-teal-600 bg-transparent border-none">
+                                <option value="en">English</option>
+                                <option value="ar">العربية</option>
+                                <option value="ru">Русский</option>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden mobile-menu-button text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu bg-white md:hidden">
+            <div class="container mx-auto px-6">
+                <nav>
+                    <ul class="flex flex-col space-y-3 py-3">
+                        <li><a href="/costs" class="text-gray-700 hover:text-teal-600 block py-2 transition">Costs</a></li>
+                        <li><a href="/articles" class="text-gray-700 hover:text-teal-600 block py-2 transition">Articles</a></li>
+                        <li><a href="/popular-treatments" class="text-gray-700 hover:text-teal-600 block py-2 transition">Popular Treatments</a></li>
+                        <li><a href="/home" class="text-gray-700 hover:text-teal-600 block py-2 transition">Home</a></li>
+                        <li class="pt-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                                <select class="text-gray-700 hover:text-teal-600 bg-transparent border-none w-full py-2">
+                                    <option value="en">English</option>
+                                    <option value="ar">العربية</option>
+                                    <option value="ru">Русский</option>
+                                </select>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Treatments Header -->
+    <section class="treatments-header">
+        <div class="treatments-header-bg"></div>
+        <div class="treatments-header-content">
+            <h1>Most Popular Treatments</h1>
+            <p class="text-lg mt-4 mb-6 max-w-2xl mx-auto">Explore top medical procedures offered in Iran, combining world-class expertise with affordable prices.</p>
+        </div>
+    </section>
+
+    <!-- Search & Filters -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">Find Your Treatment</h2>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <input type="text" id="treatment-search" class="px-4 py-2 rounded-lg border border-gray-300 w-64 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Search treatments...">
+                    <button class="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700">Search</button>
+                </div>
+            </div>
+            <div class="category-filter flex flex-wrap gap-4 justify-center mb-8">
+                <button class="px-4 py-2 rounded-lg bg-gray-200 active" data-category="all">All</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="cardiology">Cardiology</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="cosmetic">Cosmetic Surgery</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="dental">Dental Care</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="orthopedic">Orthopedic</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="fertility">Fertility</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Treatments Grid -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div id="treatment-posts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Treatment 1: Rhinoplasty -->
+                <div class="treatment-card" data-category="cosmetic">
+                    <img src="images/populartreatment/rhino.png?auto=compress&cs=tinysrgb&w=600" alt="Rhinoplasty">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Rhinoplasty</h3>
+                        <p class="text-gray-700 mb-4">Enhance your appearance with Iran’s top nose surgery experts, offering precision and affordable pricing.</p>
+                        <a href="/treatments/rhinoplasty" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 2: Coronary Artery Bypass -->
+                <div class="treatment-card" data-category="cardiology">
+                    <img src="images/populartreatment/coronary.png?auto=compress&cs=tinysrgb&w=600" alt="Coronary Artery Bypass">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Coronary Artery Bypass</h3>
+                        <p class="text-gray-700 mb-4">Restore heart health with advanced bypass surgery in Iran’s JCI-accredited hospitals.</p>
+                        <a href="/treatments/heart-bypass" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 3: Dental Implants -->
+                <div class="treatment-card" data-category="dental">
+                    <img src="https://images.pexels.com/photos/6627413/pexels-photo-6627413.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Dental Implants">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Dental Implants</h3>
+                        <p class="text-gray-700 mb-4">Achieve a confident smile with high-quality dental implants at a fraction of global costs.</p>
+                        <a href="/treatments/dental-implants" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 4: Hip Replacement -->
+                <div class="treatment-card" data-category="orthopedic">
+                    <img src="https://images.pexels.com/photos/7446990/pexels-photo-7446990.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hip Replacement">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Hip Replacement</h3>
+                        <p class="text-gray-700 mb-4">Regain mobility with expert hip replacement surgery in Iran’s leading orthopedic centers.</p>
+                        <a href="/treatments/hip-replacement" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 5: Facelift -->
+                <div class="treatment-card" data-category="cosmetic">
+                    <img src="images/populartreatment/facellift.png?auto=compress&cs=tinysrgb&w=600" alt="Facelift">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Facelift</h3>
+                        <p class="text-gray-700 mb-4">Rejuvenate your look with Iran’s skilled cosmetic surgeons, known for natural results.</p>
+                        <a href="/treatments/facelift" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 6: In-Vitro Fertilization (IVF) -->
+                <div class="treatment-card" data-category="fertility">
+                    <img src="images/populartreatment/ivf.jpg?auto=compress&cs=tinysrgb&w=600" alt="IVF">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">In-Vitro Fertilization (IVF)</h3>
+                        <p class="text-gray-700 mb-4">Start your family with Iran’s advanced fertility treatments and high success rates.</p>
+                        <a href="/treatments/ivf" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 7: Coronary Angioplasty -->
+                <div class="treatment-card" data-category="cardiology">
+                    <img src="https://images.pexels.com/photos/7446993/pexels-photo-7446993.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Angioplasty">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Coronary Angioplasty</h3>
+                        <p class="text-gray-700 mb-4">Improve heart function with minimally invasive angioplasty in Iran’s top clinics.</p>
+                        <a href="/treatments/angioplasty" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 8: Teeth Whitening -->
+                <div class="treatment-card" data-category="dental">
+                    <img src="https://images.pexels.com/photos/6627414/pexels-photo-6627414.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Teeth Whitening">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Teeth Whitening</h3>
+                        <p class="text-gray-700 mb-4">Brighten your smile with safe, professional whitening at Iran’s dental hubs.</p>
+                        <a href="/treatments/teeth-whitening" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 9: Knee Replacement -->
+                <div class="treatment-card" data-category="orthopedic">
+                    <img src="https://images.pexels.com/photos/7446992/pexels-photo-7446992.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Knee Replacement">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Knee Replacement</h3>
+                        <p class="text-gray-700 mb-4">Move freely again with expert knee surgery in Iran’s advanced facilities.</p>
+                        <a href="/treatments/knee-replacement" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 10: Porcelain Veneers -->
+                <div class="treatment-card" data-category="dental">
+                    <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Porcelain Veneers">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Porcelain Veneers</h3>
+                        <p class="text-gray-700 mb-4">Transform your smile with custom-made veneers for a flawless, natural look.</p>
+                        <a href="/treatments/porcelain-veneers" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 11: Orthodontics -->
+                <div class="treatment-card" data-category="dental">
+                    <img src="https://images.pexels.com/photos/6627416/pexels-photo-6627416.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Orthodontics">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Orthodontics</h3>
+                        <p class="text-gray-700 mb-4">Straighten your teeth with braces or aligners at Iran’s top dental clinics.</p>
+                        <a href="/treatments/orthodontics" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 12: Root Canal Therapy -->
+                <div class="treatment-card" data-category="dental">
+                    <img src="https://images.pexels.com/photos/6627417/pexels-photo-6627417.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Root Canal Therapy">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Root Canal Therapy</h3>
+                        <p class="text-gray-700 mb-4">Save damaged teeth with expert root canal treatment at affordable prices.</p>
+                        <a href="/treatments/root-canal" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 13: Liposuction -->
+                <div class="treatment-card" data-category="cosmetic">
+                    <img src="images/populartreatment/Liposuction.png?auto=compress&cs=tinysrgb&w=600" alt="Liposuction">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Liposuction</h3>
+                        <p class="text-gray-700 mb-4">Sculpt your body with advanced liposuction techniques in Iran’s premier clinics.</p>
+                        <a href="/treatments/liposuction" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 14: Breast Augmentation -->
+                <div class="treatment-card" data-category="cosmetic">
+                    <img src="images/populartreatment/Breast Augmentation.png?auto=compress&cs=tinysrgb&w=600" alt="Breast Augmentation">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Breast Augmentation</h3>
+                        <p class="text-gray-700 mb-4">Enhance your silhouette with safe, modern breast implants in Iran.</p>
+                        <a href="/treatments/breast-augmentation" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 15: Blepharoplasty -->
+                <div class="treatment-card" data-category="cosmetic">
+                    <img src="https://images.pexels.com/photos/3775155/pexels-photo-3775155.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Blepharoplasty">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Blepharoplasty</h3>
+                        <p class="text-gray-700 mb-4">Rejuvenate your eyes with eyelid surgery for a youthful appearance.</p>
+                        <a href="/treatments/blepharoplasty" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 16: Hair Transplant -->
+                <div class="treatment-card" data-category="cosmetic">
+                    <img src="images/populartreatment/hair.png?auto=compress&cs=tinysrgb&w=600" alt="Hair Transplant">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Hair Transplant</h3>
+                        <p class="text-gray-700 mb-4">Restore your hairline with natural-looking results in Iran’s top clinics.</p>
+                        <a href="/treatments/hair-transplant" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+                <!-- Treatment 17: Abdominoplasty -->
+                <div class="treatment-card" data-category="cosmetic">
+                    <img src="images/populartreatment/Abdominoplasty.png?auto=compress&cs=tinysrgb&w=600" alt="Abdominoplasty">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Abdominoplasty</h3>
+                        <p class="text-gray-700 mb-4">Achieve a toned abdomen with tummy tuck surgery in Iran’s leading centers.</p>
+                        <a href="/treatments/abdominoplasty" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <button id="load-more" class="bg-teal-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-teal-700">Load More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-teal-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6">Ready for World-Class Care?</h2>
+            <p class="text-lg mb-8">Book your treatment in Iran today and experience top-quality healthcare at unbeatable prices.</p>
+            <div class="flex justify-center gap-4">
+                <a href="/booking" class="inline-block bg-white text-teal-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100">Book Now</a>
+                <a href="/contact" class="inline-block bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-teal-600">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">H A Y Y A N</h3>
+                    <p>Medical tourism in Iran with expert care and cultural experiences.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul>
+                        <li class="mb-2"><a href="/about" class="hover:text-teal-400 transition duration-300">About Us</a></li>
+                        <li class="mb-2"><a href="/services" class="hover:text-teal-400 transition duration-300">Services</a></li>
+                        <li class="mb-2"><a href="/contact" class="hover:text-teal-400 transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <p class="mb-2">Email: <a href="/cdn-cgi/l/email-protection#2a43444c456a434853534b4404494547" class="hover:text-teal-400 transition duration-300">[hayyan.ht@gmail.com]</a></p>
+                    <p class="mb-2">Phone: <a href="tel:+989028940862" class="hover:text-teal-400 transition duration-300">+98 902 894 0862</a></p>
+                    <p>Address: Mashhad, Iran</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center pt-8 border-t border-gray-700">
+                <p>© 2025 H A Y Y A N. All rights reserved.</p>
+                <p class="mt-2"><a href="/privacy" class="hover:text-teal-400 transition duration-300">Privacy Policy</a> | <a href="/terms" class="hover:text-teal-400 transition duration-300">Terms of Use</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        // Category Filter
+        const filterButtons = document.querySelectorAll('.category-filter button');
+        const treatmentPosts = document.querySelectorAll('.treatment-card');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const category = button.getAttribute('data-category');
+                treatmentPosts.forEach(post => {
+                    post.style.display = (category === 'all' || post.getAttribute('data-category') === category) ? 'block' : 'none';
+                });
+            });
+        });
+
+        // Search Functionality
+        const searchInput = document.getElementById('treatment-search');
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            treatmentPosts.forEach(post => {
+                const title = post.querySelector('h3').textContent.toLowerCase();
+                const description = post.querySelector('p').textContent.toLowerCase();
+                post.style.display = (title.includes(query) || description.includes(query)) ? 'block' : 'none';
+            });
+        });
+
+        // Load More (Placeholder)
+        document.getElementById('load-more').addEventListener('click', () => {
+            alert('Loading more treatments... (Add real treatments for production!)');
+        });
+
+        // Mobile Menu Toggle
+        const menuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Header Scroll Effect
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+    </script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'931befe72b85b02c',t:'MTc0NDg5MzA2Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
