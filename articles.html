@@ -1,0 +1,493 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover why Iran is the top choice for rhinoplasty with expert surgeons and affordable prices.">
+    <meta name="keywords" content="rhinoplasty Iran, nose surgery, medical tourism, cosmetic surgery, affordable healthcare">
+    <meta name="author" content="H A Y Y A N">
+    <title>Why Rhinoplasty in Iran is Your Best Choice - H A Y Y A N</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Consistent Styling with blog.html */
+        .blog-post-header {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, #0d9488 0%, #2dd4bf 100%);
+            overflow: hidden;
+        }
+        .blog-post-header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.pexels.com/photos/5327656/pexels-photo-5327656.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
+            opacity: 0.3;
+            transform: translateY(0);
+            transition: transform 0.1s;
+        }
+        .blog-post-header:hover .blog-post-header-bg {
+            transform: translateY(-20px);
+        }
+        .blog-post-header-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            padding-top: 120px;
+        }
+        .blog-post-header h1 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeIn 1s ease-in;
+        }
+        .meta-tags span {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 12px;
+            margin: 5px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        .meta-tags span:hover {
+            background: rgba(255,255,255,0.4);
+        }
+
+        /* Article Content */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: #333;
+        }
+        .article-content h2 {
+            font-size: 1.75rem;
+            margin-top: 2rem;
+            color: #0d9488;
+        }
+        .article-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        .article-content blockquote {
+            border-left: 4px solid #2dd4bf;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: #555;
+            font-style: italic;
+        }
+
+        /* Sidebars */
+        .toc-sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 100px;
+        }
+        .toc-sidebar ul li {
+            margin-bottom: 10px;
+        }
+        .toc-sidebar a {
+            color: #0d9488;
+            transition: color 0.3s;
+        }
+        .toc-sidebar a:hover {
+            color: #2dd4bf;
+        }
+        .contact-widget {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 100px;
+        }
+        .contact-widget button {
+            background: linear-gradient(to right, #0d9488, #2dd4bf);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        .contact-widget button:hover {
+            background: linear-gradient(to right, #0b8276, #27b8a3);
+        }
+
+        /* Author Bio */
+        .author-bio {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .author-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .author-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Related Posts */
+        .related-post {
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .related-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        .related-post img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .related-post:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .testimonial {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            display: flex;
+            gap: 15px;
+        }
+        .testimonial:last-child {
+            border-bottom: none;
+        }
+        .testimonial-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .testimonial-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+        .whatsapp-btn i {
+            font-size: 24px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .toc-sidebar, .contact-widget {
+                display: none;
+            }
+            .blog-post-header {
+                height: 400px;
+            }
+            .blog-post-header h1 {
+                font-size: 2rem;
+            }
+            .author-bio {
+                flex-direction: column;
+                text-align: center;
+            }
+            .author-img {
+                margin-bottom: 1rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .testimonial {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .testimonial-img {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/+989028940862" target="_blank" class="fixed bottom-5 right-5 flex items-center space-x-3 bg-gradient-to-br from-green-400 to-teal-600 text-white rounded-full shadow-lg px-4 py-2 z-50 hover:bg-white/20 transition" aria-label="Free Consultation via WhatsApp">
+        <i class="fab fa-whatsapp text-2xl"></i>
+        <span class="font-semibold" data-i18n="floating_buttons.consultation">Free Consultation</span>
+    </a>
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center py-3 px-6">
+            <a href="/" class="text-xl font-bold text-teal-600" data-i18n="header.brand">H A Y Y A N</a>
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex space-x-6 items-center">
+                <a href="/costs" class="text-gray-700 hover:text-teal-600 transition" data-i18n="header.nav.costs">Costs</a>
+                <a href="/articles" class="text-gray-700 hover:text-teal-600 transition" data-i18n="header.nav.articles">Articles</a>
+                <a href="/popular-treatments" class="text-gray-700 hover:text-teal-600 transition" data-i18n="header.nav.popular_treatments">Popular Treatments</a>
+                <a href="/home" class="text-gray-700 hover:text-teal-600 transition" data-i18n="header.nav.home">Home</a>
+                <div class="flex items-center">
+                    <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                    <select id="language-selector" class="text-gray-700 hover:text-teal-600 bg-transparent border-none">
+                        <option value="en" data-i18n="header.lang.en">English</option>
+                        <option value="ar" data-i18n="header.lang.ar">العربية</option>
+                        <option value="ru" data-i18n="header.lang.ru">Русский</option>
+                    </select>
+                </div>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <nav class="px-6 py-4">
+                <a href="/costs" class="block text-gray-700 hover:text-teal-600 py-2 transition" data-i18n="header.nav.costs">Costs</a>
+                <a href="/articles" class="block text-gray-700 hover:text-teal-600 py-2 transition" data-i18n="header.nav.articles">Articles</a>
+                <a href="/popular-treatments" class="block text-gray-700 hover:text-teal-600 py-2 transition" data-i18n="header.nav.popular_treatments">Popular Treatments</a>
+                <a href="/home" class="block text-gray-700 hover:text-teal-600 py-2 transition" data-i18n="header.nav.home">Home</a>
+                <div class="flex items-center mt-3">
+                    <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                    <select id="language-selector-mobile" class="text-gray-700 hover:text-teal-600 bg-transparent border-none w-full py-2">
+                        <option value="en" data-i18n="header.lang.en">English</option>
+                        <option value="ar" data-i18n="header.lang.ar">العربية</option>
+                        <option value="ru" data-i18n="header.lang.ru">Русский</option>
+                    </select>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Post Header -->
+    <section class="blog-post-header">
+        <div class="blog-post-header-bg"></div>
+        <div class="blog-post-header-content">
+            <h1>Why Rhinoplasty in Iran is Your Best Choice</h1>
+            <p class="text-lg mt-4 mb-6 max-w-2xl mx-auto">Explore why Iran leads in nose surgery with skilled surgeons and unbeatable prices.</p>
+            <div class="meta-tags">
+                <span>Cosmetic Surgery</span>
+                <span>Rhinoplasty</span>
+                <span>Iran</span>
+                <span>Affordable Care</span>
+            </div>
+            <div class="text-sm mt-4">
+                <span>By Dr. Aria Hosseini</span> | <span>October 15, 2024</span> | <span>5 min read</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content with Sidebars -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Table of Contents Sidebar -->
+                <div class="lg:w-1/5">
+                    <div class="toc-sidebar">
+                        <h3 class="text-lg font-semibold mb-4">Table of Contents</h3>
+                        <ul>
+                            <li><a href="#why-iran">Why Choose Iran?</a></li>
+                            <li><a href="#cost-savings">Cost Savings</a></li>
+                            <li><a href="#tourism">Combining with Tourism</a></li>
+                            <li><a href="#next-steps">Next Steps</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Main Article Content -->
+                <div class="lg:w-3/5">
+                    <div class="article-content">
+                        <p class="mb-6">Iran has emerged as a global leader in rhinoplasty, attracting thousands of international patients each year. With a combination of highly skilled surgeons, state-of-the-art facilities, and costs that are 60-80% lower than Western countries, it’s no surprise that Iran is a top destination for nose surgery.</p>
+                        
+                        <h2 id="why-iran">Why Choose Iran for Rhinoplasty?</h2>
+                        <p class="mb-6">Iranian surgeons are renowned for their expertise in rhinoplasty, often performing thousands of procedures annually. This high volume translates to unparalleled experience, ensuring precision and natural-looking results. Additionally, clinics in cities like Mashhad and Shiraz are equipped with cutting-edge technology, meeting international standards.</p>
+                        
+                        <img src="https://images.pexels.com/photos/5327656/pexels-photo-5327656.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Rhinoplasty procedure">
+                        
+                        <h2 id="cost-savings">Cost Savings Without Compromise</h2>
+                        <p class="mb-6">A rhinoplasty in Iran typically costs between $1,000 and $3,000, compared to $8,000-$15,000 in the U.S. or Europe. These savings include consultations, surgery, and post-operative care, all delivered by board-certified specialists. Patients also benefit from personalized care and shorter waiting times.</p>
+                        
+                        <blockquote>“I had my rhinoplasty in Mashhad, and the entire experience was seamless. The surgeon was incredibly skilled, and I saved thousands compared to quotes I got back home.” – Sarah, UK</blockquote>
+                        
+                        <h2 id="tourism">Combining Treatment with Tourism</h2>
+                        <p class="mb-6">Iran offers more than just medical excellence. Patients can recover in culturally rich cities like Shiraz, visiting historical sites like Persepolis or relaxing in the serene Eram Garden. This blend of healing and heritage makes Iran a unique medical tourism destination.</p>
+                        
+                        <h2 id="next-steps">Next Steps</h2>
+                        <p class="mb-6">Planning your rhinoplasty in Iran is straightforward with H A Y Y A N. Contact our team to connect with top surgeons, arrange your medical visa, and plan a memorable trip. <a href="/contact" class="text-teal-600 hover:underline">Get started today</a>.</p>
+                    </div>
+                </div>
+
+                <!-- Contact Widget Sidebar -->
+                <div class="lg:w-1/5">
+                    <div class="contact-widget">
+                        <h3 class="text-lg font-semibold mb-4">Plan Your Rhinoplasty</h3>
+                        <p class="text-gray-600 mb-4">Ready to transform your look with Iran’s top surgeons? Contact us today!</p>
+                        <a href="/contact"><button>Book a Consultation</button></a>
+                        <p class="text-sm text-gray-500 mt-4">Or call: +98 902 894 0862</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Bio -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="author-bio">
+                <div class="author-img">
+                    <img src="https://images.pexels.com/photos/8460157/pexels-photo-8460157.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Dr. Aria Hosseini">
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Dr. Aria Hosseini</h3>
+                    <p class="text-gray-600">Dr. Hosseini is a board-certified plastic surgeon with over 15 years of experience in rhinoplasty. Based in Mashhad, he is passionate about helping patients achieve their aesthetic goals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Posts -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-2xl font-bold mb-8">Related Posts</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="related-post">
+                    <img src="https://images.pexels.com/photos/4167541/pexels-photo-4167541.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Facelift">
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">Facelift in Iran: What to Expect</h3>
+                        <p class="text-sm text-gray-600 mb-4">Discover affordable, high-quality facelifts in Iran’s top clinics.</p>
+                        <a href="/blog/facelift-iran" class="text-teal-600 hover:underline">Read More</a>
+                    </div>
+                </div>
+                <div class="related-post">
+                    <img src="https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Cost Savings">
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">Saving Big with Treatments in Iran</h3>
+                        <p class="text-sm text-gray-600 mb-4">Uncover how Iran offers premium care at a fraction of global costs.</p>
+                        <a href="/blog/cost-savings" class="text-teal-600 hover:underline">Read More</a>
+                    </div>
+                </div>
+                <div class="related-post">
+                    <img src="https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Medical Visa">
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">How to Get a Medical Visa for Iran</h3>
+                        <p class="text-sm text-gray-600 mb-4">A step-by-step guide to plan your medical trip to Iran.</p>
+                        <a href="/blog/visa-guide" class="text-teal-600 hover:underline">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patient Testimonials Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="testimonials-section">
+                <h2 class="text-2xl font-bold mb-6">Patient Testimonials</h2>
+                <div class="testimonial">
+                    <div class="testimonial-img">
+                        <img src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Sarah">
+                    </div>
+                    <div>
+                        <p class="font-semibold">Sarah, UK</p>
+                        <p class="text-gray-600 text-sm mb-2">October 2024</p>
+                        <p class="text-gray-700">“My rhinoplasty in Mashhad was life-changing. The surgeon was highly skilled, and the H A Y Y A N team made everything so easy. I saved thousands and loved exploring Shiraz during recovery!”</p>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-img">
+                        <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Ahmed">
+                    </div>
+                    <div>
+                        <p class="font-semibold">Ahmed, UAE</p>
+                        <p class="text-gray-600 text-sm mb-2">August 2024</p>
+                        <p class="text-gray-700">“I chose Iran for my nose surgery, and the results were beyond my expectations. The clinics are world-class, and the care was exceptional. Highly recommend H A Y Y A N!”</p>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-img">
+                        <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Maria">
+                    </div>
+                    <div>
+                        <p class="font-semibold">Maria, Canada</p>
+                        <p class="text-gray-600 text-sm mb-2">July 2024</p>
+                        <p class="text-gray-700">“The entire process was seamless, from visa assistance to post-op care. My surgeon in Mashhad was amazing, and I’m thrilled with my new look. Thank you, H A Y Y A N!”</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">H A Y Y A N</h3>
+                    <p>Leading medical tourism with premium healthcare and cultural experiences worldwide.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul>
+                        <li><a href="/about" class="hover:text-teal-400">About Us</a></li>
+                        <li><a href="/services" class="hover:text-teal-400">Services</a></li>
+                        <li><a href="/contact" class="hover:text-teal-400">Contact</a></li>
+                        <li><a href="/blog" class="hover:text-teal-400">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <p>Email: <a href="mailto:hayyan.ht@gmail.com">hayyan.ht@gmail.com</a></p>
+                    <p>Phone: +98 902 894 0862</p>
+                    <p>Address: Mashhad, Iran</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <p>© 2025 H A Y Y A N. All rights reserved.</p>
+                <p><a href="/privacy" class="hover:text-teal-400">Privacy Policy</a> | <a href="/terms" class="hover:text-teal-400">Terms of Use</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
