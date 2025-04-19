@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Meet our expert doctors at Iran Health Journey, providing world-class medical care.">
+    <meta name="keywords" content="Iran doctors, medical specialists, health tourism Iran">
+    <meta name="author" content="Iran Health Journey">
+    <title>Our Doctors - Iran Health Journey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <style>
+        .doctor-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .testimonial-slider .swiper-slide {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .filter-form select {
+            transition: all 0.3s ease;
+        }
+        .filter-form select:focus {
+            border-color: #0d9488;
+            box-shadow: 0 0 5px rgba(13, 148, 136, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <a href="https://wa.me/+989028940862" target="_blank" class="fixed bottom-5 right-5 flex items-center space-x-3 bg-gradient-to-br from-green-400 to-teal-600 text-white rounded-full shadow-lg px-4 py-2 z-50 hover:bg-white/20 transition" aria-label="Free Consultation via WhatsApp">
+        <i class="fab fa-whatsapp text-2xl"></i>
+        <span class="font-semibold" data-i18n="floating_buttons.consultation">Free Consultation</span>
+    </a>
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center py-3 px-6">
+            <a href="/" class="text-xl font-bold text-teal-600" data-i18n="header.brand">H A Y Y A N</a>
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex space-x-6 items-center">
+                <a href="/costs" class="text-gray-700 hover:text-teal-600 transition" data-i18n="header.nav.costs">Costs</a>
+                <a href="/articles" class="text-gray-700 hover:text-teal-600 transition" data-i18n="header.nav.articles">Articles</a>
+                <a href="/popular-treatments" class="text-gray-700 hover:text-teal-600 transition" data-i18n="header.nav.popular_treatments">Popular Treatments</a>
+                <a href="/home" class="text-gray-700 hover:text-teal-600 transition" data-i18n="header.nav.home">Home</a>
+                <div class="flex items-center">
+                    <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                    <select id="language-selector" class="text-gray-700 hover:text-teal-600 bg-transparent border-none">
+                        <option value="en" data-i18n="header.lang.en">English</option>
+                        <option value="ar" data-i18n="header.lang.ar">العربية</option>
+                        <option value="ru" data-i18n="header.lang.ru">Русский</option>
+                    </select>
+                </div>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <nav class="px-6 py-4">
+                <a href="/costs" class="block text-gray-700 hover:text-teal-600 py-2 transition" data-i18n="header.nav.costs">Costs</a>
+                <a href="/articles" class="block text-gray-700 hover:text-teal-600 py-2 transition" data-i18n="header.nav.articles">Articles</a>
+                <a href="/popular-treatments" class="block text-gray-700 hover:text-teal-600 py-2 transition" data-i18n="header.nav.popular_treatments">Popular Treatments</a>
+                <a href="/home" class="block text-gray-700 hover:text-teal-600 py-2 transition" data-i18n="header.nav.home">Home</a>
+                <div class="flex items-center mt-3">
+                    <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                    <select id="language-selector-mobile" class="text-gray-700 hover:text-teal-600 bg-transparent border-none w-full py-2">
+                        <option value="en" data-i18n="header.lang.en">English</option>
+                        <option value="ar" data-i18n="header.lang.ar">العربية</option>
+                        <option value="ru" data-i18n="header.lang.ru">Русский</option>
+                    </select>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section with Filters -->
+    <section class="bg-teal-600 text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl font-bold mb-4">Our Expert Doctors</h1>
+            <p class="text-xl mb-8">World-class specialists for your care</p>
+            <div class="mt-8 flex justify-center">
+                <form id="filter-form" class="filter-form w-full max-w-2xl grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <input type="text" id="search-input" placeholder="Search by name" class="px-4 py-2 rounded-lg border text-gray-800">
+                    <select id="specialty-filter" class="px-4 py-2 rounded-lg border text-gray-800">
+                        <option value="">All Specialties</option>
+                        <option value="Cardiology">Cardiology</option>
+                        <option value="Orthopedic Surgery">Orthopedic Surgery</option>
+                        <option value="Neurology">Neurology</option>
+                        <!-- Add more specialties as needed -->
+                    </select>
+                    <select id="city-filter" class="px-4 py-2 rounded-lg border text-gray-800">
+                        <option value="">All Cities</option>
+                        <option value="Mashhad">Mashhad</option>
+                        <option value="Shiraz">Shiraz</option>
+                        <option value="Mashhad">Mashhad</option>
+                        <!-- Add more cities as needed -->
+                    </select>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Grid -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Meet Our Doctors</h2>
+            <div id="doctors-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Doctors will be dynamically inserted here -->
+            </div>
+            <div class="text-center mt-8">
+                <a href="#" class="text-teal-600 font-semibold hover:underline">View More Doctors</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patient Testimonials -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">What Our Patients Say</h2>
+            <div class="testimonial-slider swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <p class="italic mb-4">"Dr. Ahmadi provided exceptional care, highly professional!"</p>
+                        <p class="font-semibold">– Ahmed, UAE</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <p class="italic mb-4">"The treatment was top-notch, and the staff were amazing."</p>
+                        <p class="font-semibold">– Sarah, UK</p>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Iran Health Journey</h3>
+                    <p>Leading medical tourism in Iran with expert care and cultural experiences.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul>
+                        <li><a href="/about" class="hover:text-teal-400">About Us</a></li>
+                        <li><a href="/services" class="hover:text-teal-400">Services</a></li>
+                        <li><a href="/contact" class="hover:text-teal-400">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <p>Email: <a href="mailto:hayyan.ht@gmail.com">hayyan.ht@gmail.com</a></p>
+                    <p>Phone: +98 902 894 0862</p>
+                    <p>Address: Mashhad, Iran</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <p>© 2025 Iran Health Journey. All rights reserved.</p>
+                <p><a href="/privacy" class="hover:text-teal-400">Privacy Policy</a> | <a href="/terms" class="hover:text-teal-400">Terms of Use</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Filters and Dynamic Doctors -->
+    <script>
+        // Sample doctors data (replace with actual data from backend)
+        const doctors = [
+            {
+                name: "Dr. Ahmadi",
+                specialty: "Cardiology",
+                city: "Mashhad",
+                experience: "15 years",
+                languages: "English, Persian",
+                hospital: "Mashhad Heart Center",
+                rating: "4.8/5",
+                image: "https://images.pexels.com/photos/5327656/pexels-photo-5327656.jpeg?auto=compress&cs=tinysrgb&w=300",
+            },
+            {
+                name: "Dr. Mohammadi",
+                specialty: "Orthopedic Surgery",
+                city: "Shiraz",
+                experience: "12 years",
+                languages: "English, Persian, Arabic",
+                hospital: "Shiraz Medical Complex",
+                rating: "4.7/5",
+                image: "https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg?auto=compress&cs=tinysrgb&w=300",
+            },
+            // Add more doctors as needed
+        ];
+
+        // Function to render doctors
+        function renderDoctors(filteredDoctors) {
+            const grid = document.getElementById("doctors-grid");
+            grid.innerHTML = "";
+            filteredDoctors.forEach(doctor => {
+                const card = `
+                    <div class="doctor-card bg-white p-6 rounded-lg shadow-lg text-center">
+                        <img src="${doctor.image}" alt="${doctor.name}" class="mx-auto mb-4 rounded-full w-32 h-32 object-cover">
+                        <h3 class="text-xl font-semibold mb-2">${doctor.name}</h3>
+                        <p class="text-gray-600 mb-2">${doctor.specialty}</p>
+                        <p class="text-gray-600 mb-2">${doctor.city}</p>
+                        <p class="text-gray-700 mb-2">Experience: ${doctor.experience}</p>
+                        <p class="text-gray-700 mb-2">Languages: ${doctor.languages}</p>
+                        <p class="text-gray-700 mb-2">Hospital: ${doctor.hospital}</p>
+                        <p class="text-gray-700 mb-4">Rating: ${doctor.rating}</p>
+                        <a href="/doctor-profile.html" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-teal-700">View Profile</a>
+                        <a href="/book-appointment.html" class="inline-block bg-gray-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-gray-700 mt-2">Book Appointment</a>
+                    </div>
+                `;
+                grid.insertAdjacentHTML("beforeend", card);
+            });
+        }
+
+        // Initial render
+        renderDoctors(doctors);
+
+        // Filter functionality
+        document.getElementById("filter-form").addEventListener("change", () => {
+            const search = document.getElementById("search-input").value.toLowerCase();
+            const specialty = document.getElementById("specialty-filter").value;
+            const city = document.getElementById("city-filter").value;
+
+            const filteredDoctors = doctors.filter(doctor => {
+                return (
+                    (search === "" || doctor.name.toLowerCase().includes(search)) &&
+                    (specialty === "" || doctor.specialty === specialty) &&
+                    (city === "" || doctor.city === city)
+                );
+            });
+
+            renderDoctors(filteredDoctors);
+        });
+
+        // Swiper initialization for testimonials
+        new Swiper('.testimonial-slider', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 20,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+            },
+        });
+    </script>
+</body>
+</html>
