@@ -1,0 +1,561 @@
+<script type="text/javascript">
+    var gk_fileData = {};
+    function loadFileData(filename) {
+      return gk_fileData[filename] || "";
+    }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find answers to common questions about medical tourism in Iran with H A Y Y A N.">
+    <meta name="keywords" content="medical tourism FAQ, health tourism Iran, Iran healthcare questions">
+    <meta name="author" content="H A Y Y A N">
+    <title>FAQ - H A Y Y A N</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for WhatsApp icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Header Styling */
+        .faq-header {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, #0d9488 0%, #2dd4bf 100%);
+            overflow: hidden;
+        }
+        .faq-header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.pexels.com/photos/5998482/pexels-photo-5998482.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
+            opacity: 0.3;
+            transform: translateY(0);
+            transition: transform 0.1s;
+        }
+        .faq-header:hover .faq-header-bg {
+            transform: translateY(-20px);
+        }
+        .faq-header-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            padding-top: 100px;
+        }
+        .faq-header h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeIn 1s ease-in;
+        }
+
+        /* FAQ Cards */
+        .faq-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .faq-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+        .faq-card-header {
+            cursor: pointer;
+            padding: 1.5rem;
+            background: #f8fafc;
+            font-weight: 600;
+        }
+        .faq-card-content {
+            display: none;
+            padding: 1.5rem;
+        }
+        .faq-card.active .faq-card-content {
+            display: block;
+        }
+
+        /* Category Filter */
+        .category-filter button.active {
+            background: linear-gradient(to right, #0d9488, #2dd4bf);
+            color: white;
+        }
+        .category-filter button {
+            transition: all 0.3s;
+        }
+        .category-filter button:hover {
+            background: #e6fffa;
+            color: #0d9488;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+        .whatsapp-btn i {
+            font-size: 24px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header Styles */
+        header {
+            transition: all 0.3s ease;
+        }
+        .header-scrolled {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-button {
+            display: none;
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .faq-header h1 { font-size: 2rem; }
+            
+            /* Header Mobile Styles */
+            .header-mobile {
+                padding: 0.5rem 1rem;
+            }
+            .mobile-menu-button {
+                display: block;
+            }
+            nav ul {
+                display: none;
+            }
+            .mobile-menu nav ul {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- WhatsApp Buttons -->
+    <a href="https://wa.me/+989028940862" target="_blank" class="whatsapp-btn" aria-label="Contact us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://wa.me/+989028940862" target="_blank" class="consultation-btn" aria-label="Free Consultation" style="position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; padding: 10px 20px; border-radius: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s, box-shadow 0.3s; display: flex; align-items: center; font-size: 14px;">
+        <i class="fas fa-comment-medical" style="margin-right: 8px;"></i> Free Consultation
+    </a>
+
+    <!-- Improved Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50 header-mobile">
+        <div class="container mx-auto flex justify-between items-center py-3 px-6">
+            <a href="/" class="text-2xl font-bold text-teal-600">H A Y Y A N</a>
+            
+            <!-- Desktop Menu -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6 items-center">
+                    <li><a href="/costs" class="text-gray-700 hover:text-teal-600 transition">Costs</a></li>
+                    <li><a href="/articles" class="text-gray-700 hover:text-teal-600 transition">Articles</a></li>
+                    <li><a href="/popular-treatments" class="text-gray-700 hover:text-teal-600 transition">Popular Treatments</a></li>
+                    <li><a href="/home" class="text-gray-700 hover:text-teal-600 transition">Home</a></li>
+                    <li>
+                        <div class="flex items-center">
+                            <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                            <select class="text-gray-700 hover:text-teal-600 bg-transparent border-none">
+                                <option value="en">English</option>
+                                <option value="ar">العربية</option>
+                                <option value="ru">Русский</option>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden mobile-menu-button text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu bg-white md:hidden">
+            <div class="container mx-auto px-6">
+                <nav>
+                    <ul class="flex flex-col space-y-3 py-3">
+                        <li><a href="/costs" class="text-gray-700 hover:text-teal-600 block py-2 transition">Costs</a></li>
+                        <li><a href="/articles" class="text-gray-700 hover:text-teal-600 block py-2 transition">Articles</a></li>
+                        <li><a href="/popular-treatments" class="text-gray-700 hover:text-teal-600 block py-2 transition">Popular Treatments</a></li>
+                        <li><a href="/home" class="text-gray-700 hover:text-teal-600 block py-2 transition">Home</a></li>
+                        <li class="pt-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-globe-americas text-teal-600 mr-2"></i>
+                                <select class="text-gray-700 hover:text-teal-600 bg-transparent border-none w-full py-2">
+                                    <option value="en">English</option>
+                                    <option value="ar">العربية</option>
+                                    <option value="ru">Русский</option>
+                                </select>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- FAQ Header -->
+    <section class="faq-header">
+        <div class="faq-header-bg"></div>
+        <div class="faq-header-content">
+            <h1>Frequently Asked Questions</h1>
+            <p class="text-lg mt-4 mb-6 max-w-2xl mx-auto">Explore answers to common questions about medical tourism in Iran.</p>
+        </div>
+    </section>
+
+    <!-- Search & Filters -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">Find Your Answer</h2>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <input type="text" id="faq-search" class="px-4 py-2 rounded-lg border border-gray-300 w-64 focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Search questions...">
+                    <button class="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700">Search</button>
+                </div>
+            </div>
+            <div class="category-filter flex flex-wrap gap-4 justify-center mb-8">
+                <button class="px-4 py-2 rounded-lg bg-gray-200 active" data-category="all">All</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="general">General</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="iran">Iran</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="logistics">Logistics</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="financial">Financial</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="treatments">Treatments</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="legal">Legal</button>
+                <button class="px-4 py-2 rounded-lg bg-gray-200" data-category="reviews">Reviews</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Grid -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div id="faq-posts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- General FAQs -->
+                <div class="faq-card" data-category="general">
+                    <div class="faq-card-header">What is medical tourism?</div>
+                    <div class="faq-card-content">
+                        <p>Medical tourism involves traveling to another country to receive medical or wellness treatments, such as cosmetic surgery, dental care, fertility treatments, or specialized surgeries.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="general">
+                    <div class="faq-card-header">Why do people choose medical tourism?</div>
+                    <div class="faq-card-content">
+                        <p>People opt for medical tourism for lower costs, higher quality care, shorter wait times, access to treatments unavailable in their home country, and the opportunity to combine treatment with travel.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="general">
+                    <div class="faq-card-header">What are the benefits and risks of medical tourism?</div>
+                    <div class="faq-card-content">
+                        <p><strong>Benefits:</strong> Significant cost savings, access to specialized treatments, shorter wait times, and recovery in a culturally rich environment.</p>
+                        <p><strong>Risks:</strong> Variations in care quality, language barriers, legal and ethical issues, post-treatment care challenges, and potential travel complications.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="general">
+                    <div class="faq-card-header">How do I choose a destination for medical tourism?</div>
+                    <div class="faq-card-content">
+                        <p>Consider factors like medical facility quality, hospital accreditations (e.g., JCI), doctor expertise, treatment costs, language compatibility, country safety, and visa requirements.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="general">
+                    <div class="faq-card-header">What types of treatments are common in medical tourism?</div>
+                    <div class="faq-card-content">
+                        <p>Common treatments include cosmetic surgeries (e.g., rhinoplasty, liposuction), dental procedures (e.g., implants, veneers), fertility treatments (e.g., IVF), orthopedic surgeries (e.g., knee replacement), and cardiac procedures.</p>
+                    </div>
+                </div>
+
+                <!-- Iran FAQs -->
+                <div class="faq-card" data-category="iran">
+                    <div class="faq-card-header">Why choose Iran for medical tourism?</div>
+                    <div class="faq-card-content">
+                        <p>Iran offers affordable treatments (50-70% cheaper than Western countries), high-quality care, internationally accredited hospitals, rich cultural attractions with over 23 UNESCO sites, and renowned hospitality.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="iran">
+                    <div class="faq-card-header">What treatments are popular in Iran?</div>
+                    <div class="faq-card-content">
+                        <p>Popular treatments include cosmetic surgeries (e.g., rhinoplasty), fertility treatments, cardiac surgeries, ophthalmology, and stem cell therapy.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="iran">
+                    <div class="faq-card-header">How is the quality of medical care in Iran?</div>
+                    <div class="faq-card-content">
+                        <p>Iran has an advanced healthcare system with many hospitals meeting international standards. Doctors are often internationally trained, ensuring high-quality care.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="iran">
+                    <div class="faq-card-header">Are there accredited hospitals in Iran?</div>
+                    <div class="faq-card-content">
+                        <p>Yes, several hospitals in major cities like Mashhad hold JCI accreditation, ensuring high standards of safety and quality.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="iran">
+                    <div class="faq-card-header">How much do treatments in Iran cost compared to other countries?</div>
+                    <div class="faq-card-content">
+                        <p>Treatments in Iran are significantly cheaper, often 65% less than in the U.S. and 40% less than in Western Europe.</p>
+                    </div>
+                </div>
+
+                <!-- Logistics FAQs -->
+                <div class="faq-card" data-category="logistics">
+                    <div class="faq-card-header">How do I plan a medical tourism trip?</div>
+                    <div class="faq-card-content">
+                        <p>Research destinations and hospitals, consult medical professionals, arrange travel and accommodation, obtain necessary documents (e.g., visa, medical records), and plan for recovery and follow-up care.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="logistics">
+                    <div class="faq-card-header">What documents are required?</div>
+                    <div class="faq-card-content">
+                        <p>You’ll need a passport, visa (if required), medical records, insurance documents, prescriptions, and medications.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="logistics">
+                    <div class="faq-card-header">How do I choose a hospital or clinic?</div>
+                    <div class="faq-card-content">
+                        <p>Check accreditations (e.g., JCI), read patient reviews, verify medical staff qualifications, and ensure the hospital has experience with international patients.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="logistics">
+                    <div class="faq-card-header">How are language barriers managed?</div>
+                    <div class="faq-card-content">
+                        <p>Many hospitals have English-speaking staff and translators. Learning basic local phrases can also help.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="logistics">
+                    <div class="faq-card-header">How do I arrange accommodation and transportation?</div>
+                    <div class="faq-card-content">
+                        <p>Many hospitals offer packages including accommodation and transportation. Alternatively, use travel agencies or online booking platforms.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="logistics">
+                    <div class="faq-card-header">What should I do in an emergency?</div>
+                    <div class="faq-card-content">
+                        <p>Know emergency contact numbers, have travel insurance with medical coverage, and report issues to the hospital or your coordinator immediately.</p>
+                    </div>
+                </div>
+
+                <!-- Financial FAQs -->
+                <div class="faq-card" data-category="financial">
+                    <div class="faq-card-header">How much do treatments cost?</div>
+                    <div class="faq-card-content">
+                        <p>Costs vary by treatment and destination but are generally 40-70% lower than in Western countries.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="financial">
+                    <div class="faq-card-header">Are treatment packages available?</div>
+                    <div class="faq-card-content">
+                        <p>Yes, many hospitals and agencies offer comprehensive packages including treatment, accommodation, and sometimes transportation.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="financial">
+                    <div class="faq-card-header">Does insurance cover medical tourism?</div>
+                    <div class="faq-card-content">
+                        <p>Some insurance plans cover overseas treatment, but check with your provider. Travel insurance with medical coverage is recommended.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="financial">
+                    <div class="faq-card-header">How are payments made?</div>
+                    <div class="faq-card-content">
+                        <p>Payments are typically made via bank transfer, credit card, or cash. Some hospitals may require a deposit upfront.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="financial">
+                    <div class="faq-card-header">Are there hidden costs?</div>
+                    <div class="faq-card-content">
+                        <p>Request a detailed cost breakdown to avoid surprises. Consider additional expenses like follow-up care or medications.</p>
+                    </div>
+                </div>
+
+                <!-- Treatments FAQs -->
+                <div class="faq-card" data-category="treatments">
+                    <div class="faq-card-header">What is rhinoplasty?</div>
+                    <div class="faq-card-content">
+                        <p>Rhinoplasty is a surgical procedure to reshape the nose for cosmetic or functional reasons.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="treatments">
+                    <div class="faq-card-header">What are the risks and benefits of IVF?</div>
+                    <div class="faq-card-content">
+                        <p><strong>Benefits:</strong> Helps infertile couples conceive.</p>
+                        <p><strong>Risks:</strong> Multiple pregnancies, ovarian hyperstimulation syndrome.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="treatments">
+                    <div class="faq-card-header">How long is the recovery time for knee replacement?</div>
+                    <div class="faq-card-content">
+                        <p>Recovery varies, but patients typically walk with assistance a few days post-surgery and fully recover in 3-6 months.</p>
+                    </div>
+                </div>
+
+                <!-- Legal FAQs -->
+                <div class="faq-card" data-category="legal">
+                    <div class="faq-card-header">What are the legal implications of receiving treatment abroad?</div>
+                    <div class="faq-card-content">
+                        <p>Medical malpractice and patient rights laws vary by country. Research legal recourse options in the destination country.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="legal">
+                    <div class="faq-card-header">Are there ethical concerns?</div>
+                    <div class="faq-card-content">
+                        <p>Concerns may include care quality, informed consent, and the impact on local healthcare systems.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="legal">
+                    <div class="faq-card-header">What happens if something goes wrong?</div>
+                    <div class="faq-card-content">
+                        <p>Ensure the hospital has protocols for handling complications. Plan for follow-up care in your home country.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="legal">
+                    <div class="faq-card-header">How do I verify the credentials of medical providers?</div>
+                    <div class="faq-card-content">
+                        <p>Check certifications, read patient reviews, and consult with your local doctor or a medical tourism agency.</p>
+                    </div>
+                </div>
+
+                <!-- Reviews FAQs -->
+                <div class="faq-card" data-category="reviews">
+                    <div class="faq-card-header">Are patient experiences available?</div>
+                    <div class="faq-card-content">
+                        <p>Yes, many hospitals and agencies share testimonials from previous patients.</p>
+                    </div>
+                </div>
+                <div class="faq-card" data-category="reviews">
+                    <div class="faq-card-header">How do I verify the authenticity of reviews?</div>
+                    <div class="faq-card-content">
+                        <p>Look for reviews on independent platforms, check for inconsistencies, and be cautious of overly positive or negative feedback.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-teal-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6">Still Have Questions?</h2>
+            <p class="text-lg mb-8">Contact us for personalized assistance with your medical tourism journey.</p>
+            <div class="flex justify-center gap-4">
+                <a href="/contact" class="inline-block bg-white text-teal-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">H A Y Y A N</h3>
+                    <p>Medical tourism in Iran with expert care and cultural experiences.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul>
+                        <li class="mb-2"><a href="/aboutus" class="hover:text-teal-400 transition duration-300">About Us</a></li>
+                        <li class="mb-2"><a href="/services" class="hover:text-teal-400 transition duration-300">Services</a></li>
+                        <li class="mb-2"><a href="/contact" class="hover:text-teal-400 transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
+                    <p class="mb-2">Email: <a href="/cdn-cgi/l/email-protection#4a23242c250a23382b24222f2b263e2220253f38242f3364292527" class="hover:text-teal-400 transition duration-300"><span class="__cf_email__" data-cfemail="674e494148674e5546494f42464b534f4d48525549425e0944484a">[email&#160;protected]</span></a></p>
+                    <p class="mb-2">Phone: <a href="tel:+989028940862" class="hover:text-teal-400 transition duration-300">+989028940862</a></p>
+                    <p>Address: Mashhad, Iran</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center pt-8 border-t border-gray-700">
+                <p>© 2025 H A Y Y A N. All rights reserved.</p>
+                <p class="mt-2"><a href="/privacy" class="hover:text-teal-400 transition duration-300">Privacy Policy</a> | <a href="/terms" class="hover:text-teal-400 transition duration-300">Terms of Use</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        const menuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Header Scroll Effect
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Category Filter
+        const filterButtons = document.querySelectorAll('.category-filter button');
+        const faqPosts = document.querySelectorAll('.faq-card');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const category = button.getAttribute('data-category');
+                faqPosts.forEach(post => {
+                    post.style.display = (category === 'all' || post.getAttribute('data-category') === category) ? 'block' : 'none';
+                });
+            });
+        });
+
+        // Search Functionality
+        const searchInput = document.getElementById('faq-search');
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            faqPosts.forEach(post => {
+                const question = post.querySelector('.faq-card-header').textContent.toLowerCase();
+                const answer = post.querySelector('.faq-card-content').textContent.toLowerCase();
+                post.style.display = (question.includes(query) || answer.includes(query)) ? 'block' : 'none';
+            });
+        });
+
+        // Toggle FAQ Cards
+        faqPosts.forEach(card => {
+            const header = card.querySelector('.faq-card-header');
+            header.addEventListener('click', () => {
+                card.classList.toggle('active');
+            });
+        });
+    </script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93200768a930bffa',t:'MTc0NDkzNTk2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
